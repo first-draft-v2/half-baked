@@ -1,6 +1,13 @@
 const { DateTime } = require("luxon");
+const markdownIt = require("markdown-it");
 
 module.exports = function (eleventyConfig) {
+  let markdownLib = markdownIt({
+    html: true,
+    breaks: true
+  });
+  eleventyConfig.setLibrary("md", markdownLib);
+
   eleventyConfig.addPassthroughCopy("css");
   eleventyConfig.addPassthroughCopy("images");
 
