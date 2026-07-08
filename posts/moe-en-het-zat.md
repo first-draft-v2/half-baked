@@ -8,7 +8,7 @@ tags:
   - dutch
 ---
 Mijn humor is om alles letterlijk te nemen
-Doodvermoeiend, maar ik kan ermee leven
+Het is doodvermoeiend, maar ik kan ermee leven
 
 Die dubbelzinnigheid, zo diep.
 Die dubbelzinnigheid, zó diep.

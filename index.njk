@@ -1,15 +1,14 @@
 ---
 layout: base.njk
-title: Poems
 ---
 {% set cardColors = [
   "oklch(96.6% 0.005 106.5)"
 ] %}
-<div class="post-stack">
+<div>
   {% for post in collections.post | reverse %}
-    <article class="post-card-full" style="background: {{ cardColors[loop.index0 % cardColors.length] }};">
+    <article class="post" >
       <p class="post-eyebrow">{{ post.date | date("MMM d, yyyy") }}</p>
-      <h2 class="post-card-full-title"><a href="{{ post.url | url }}">{{ post.data.title }}</a></h2>
+      <h2 class="post-title"><a href="{{ post.url | url }}">{{ post.data.title }}</a></h2>
       {% if post.data.image %}
         <img class="post-image" src="{{ post.data.image | url }}" alt="{{ post.data.imageAlt or '' }}">
       {% endif %}
