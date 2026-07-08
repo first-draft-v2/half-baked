@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta name="design_doc_mode" content="canvas">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; background: oklch(0.94 0.005 90); font-family: 'Inter', sans-serif; }
+    ::selection { background: oklch(0.8 0.08 40 / 0.3); }
+  </style>
+</helmet>
+
+<div style="padding: 64px 48px 120px; display: flex; flex-direction: column; gap: 40px;">
+
+  <div style="display:flex; align-items:baseline; gap:16px;">
+    <h1 style="font-family:'Inter',sans-serif; font-size:22px; font-weight:600; color:oklch(0.25 0.01 90); margin:0;">Blog style directions</h1>
+    <span style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:oklch(0.5 0.01 90);">turn 1 — three directions, pick one to continue</span>
+  </div>
+
+  <div style="display:flex; flex-wrap:wrap; gap:40px; align-items:flex-start;">
+
+    <!-- OPTION 1A: Quiet Minimal -->
+    <section id="1a" style="display:flex; flex-direction:column; gap:16px;">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600; background:oklch(0.25 0.01 90); color:oklch(0.97 0.005 90); padding:3px 8px; border-radius:3px;">1a</span>
+        <span style="font-family:'Inter',sans-serif; font-size:14px; font-weight:600; color:oklch(0.3 0.01 90);">Quiet &amp; Minimal — warm paper, terracotta accent</span>
+      </div>
+
+      <div style="width:640px; background:oklch(0.975 0.008 75); border:1px solid oklch(0.88 0.01 75); box-shadow: 0 1px 3px oklch(0.3 0.02 75 / 0.08);">
+        <!-- Homepage -->
+        <div style="padding:56px 56px 40px;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:52px;">
+            <span style="font-family:'Fraunces',serif; font-size:20px; font-weight:500; letter-spacing:0.01em; color:oklch(0.28 0.02 50);">Half-baked</span>
+            <div style="display:flex; gap:22px; font-family:'Inter',sans-serif; font-size:13px; color:oklch(0.45 0.01 75);">
+              <span style="color:oklch(0.55 0.14 40); border-bottom:1px solid oklch(0.55 0.14 40); padding-bottom:2px;">Poems</span>
+              <span>About</span>
+              <span>Tags</span>
+            </div>
+          </div>
+
+          <div style="display:flex; flex-direction:column;">
+            <a href="#" style="display:flex; justify-content:space-between; align-items:baseline; text-decoration:none; padding:22px 0; border-top:1px solid oklch(0.87 0.01 75);">
+              <span style="font-family:'Newsreader',serif; font-style:italic; font-size:19px; color:oklch(0.24 0.01 75);">Small Weather</span>
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:oklch(0.6 0.14 40);">Jul 3</span>
+            </a>
+            <a href="#" style="display:flex; justify-content:space-between; align-items:baseline; text-decoration:none; padding:22px 0; border-top:1px solid oklch(0.87 0.01 75);">
+              <span style="font-family:'Newsreader',serif; font-style:italic; font-size:19px; color:oklch(0.24 0.01 75);">Midnight Ledger</span>
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:oklch(0.5 0.01 75);">Jun 21</span>
+            </a>
+            <a href="#" style="display:flex; justify-content:space-between; align-items:baseline; text-decoration:none; padding:22px 0; border-top:1px solid oklch(0.87 0.01 75); border-bottom:1px solid oklch(0.87 0.01 75);">
+              <span style="font-family:'Newsreader',serif; font-style:italic; font-size:19px; color:oklch(0.24 0.01 75);">Two Kitchens</span>
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:oklch(0.5 0.01 75);">May 30</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Single post -->
+        <div style="border-top:8px solid oklch(0.9 0.015 75); padding:56px; display:flex; flex-direction:column; gap:28px;">
+          <div>
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:oklch(0.6 0.14 40);">Jul 3, 2026</span>
+            <h2 style="font-family:'Fraunces',serif; font-weight:500; font-size:32px; margin:8px 0 0; color:oklch(0.22 0.01 75);">Small Weather</h2>
+          </div>
+          <div style="width:100%; aspect-ratio:16/7; background:repeating-linear-gradient(45deg, oklch(0.9 0.01 75), oklch(0.9 0.01 75) 10px, oklch(0.87 0.01 75) 10px, oklch(0.87 0.01 75) 20px); display:flex; align-items:center; justify-content:center;">
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:oklch(0.5 0.01 75);">illustration — New Yorker style spot</span>
+          </div>
+          <p style="font-family:'Newsreader',serif; font-size:20px; line-height:1.75; color:oklch(0.26 0.01 75); margin:0; max-width:46ch;">
+            The rain arrives like an old argument —<br>
+            softly, then all at once. I keep the window<br>
+            cracked an inch, just to hear it change its mind.
+          </p>
+          <span style="font-family:'Inter',sans-serif; font-size:12px; color:oklch(0.55 0.14 40);">#weather &nbsp; #brief</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- OPTION 1B: Moody Dark -->
+    <section id="1b" style="display:flex; flex-direction:column; gap:16px;">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600; background:oklch(0.25 0.01 90); color:oklch(0.97 0.005 90); padding:3px 8px; border-radius:3px;">1b</span>
+        <span style="font-family:'Inter',sans-serif; font-size:14px; font-weight:600; color:oklch(0.3 0.01 90);">Moody &amp; Atmospheric — near-black, amber glow</span>
+      </div>
+
+      <div style="width:640px; background:oklch(0.19 0.01 260); border:1px solid oklch(0.28 0.01 260);">
+        <div style="padding:56px 56px 40px;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:52px;">
+            <span style="font-family:'Fraunces',serif; font-size:20px; font-weight:500; color:oklch(0.9 0.01 90);">Half-baked</span>
+            <div style="display:flex; gap:22px; font-family:'Inter',sans-serif; font-size:13px; color:oklch(0.6 0.01 260);">
+              <span style="color:oklch(0.78 0.13 75); border-bottom:1px solid oklch(0.78 0.13 75); padding-bottom:2px;">Poems</span>
+              <span>About</span>
+              <span>Tags</span>
+            </div>
+          </div>
+
+          <div style="display:flex; flex-direction:column;">
+            <a href="#" style="display:flex; justify-content:space-between; align-items:baseline; text-decoration:none; padding:22px 0; border-top:1px solid oklch(0.3 0.01 260);">
+              <span style="font-family:'Newsreader',serif; font-style:italic; font-size:19px; color:oklch(0.92 0.01 90);">Small Weather</span>
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:oklch(0.78 0.13 75);">Jul 3</span>
+            </a>
+            <a href="#" style="display:flex; justify-content:space-between; align-items:baseline; text-decoration:none; padding:22px 0; border-top:1px solid oklch(0.3 0.01 260);">
+              <span style="font-family:'Newsreader',serif; font-style:italic; font-size:19px; color:oklch(0.92 0.01 90);">Midnight Ledger</span>
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:oklch(0.55 0.01 260);">Jun 21</span>
+            </a>
+            <a href="#" style="display:flex; justify-content:space-between; align-items:baseline; text-decoration:none; padding:22px 0; border-top:1px solid oklch(0.3 0.01 260); border-bottom:1px solid oklch(0.3 0.01 260);">
+              <span style="font-family:'Newsreader',serif; font-style:italic; font-size:19px; color:oklch(0.92 0.01 90);">Two Kitchens</span>
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:oklch(0.55 0.01 260);">May 30</span>
+            </a>
+          </div>
+        </div>
+
+        <div style="border-top:8px solid oklch(0.15 0.01 260); padding:56px; display:flex; flex-direction:column; gap:28px;">
+          <div>
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:oklch(0.78 0.13 75);">Jul 3, 2026</span>
+            <h2 style="font-family:'Fraunces',serif; font-weight:500; font-size:32px; margin:8px 0 0; color:oklch(0.94 0.01 90);">Small Weather</h2>
+          </div>
+          <div style="width:100%; aspect-ratio:16/7; background:repeating-linear-gradient(45deg, oklch(0.25 0.01 260), oklch(0.25 0.01 260) 10px, oklch(0.22 0.01 260) 10px, oklch(0.22 0.01 260) 20px); display:flex; align-items:center; justify-content:center;">
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:oklch(0.6 0.01 260);">illustration — New Yorker style spot</span>
+          </div>
+          <p style="font-family:'Newsreader',serif; font-size:20px; line-height:1.75; color:oklch(0.85 0.01 90); margin:0; max-width:46ch;">
+            The rain arrives like an old argument —<br>
+            softly, then all at once. I keep the window<br>
+            cracked an inch, just to hear it change its mind.
+          </p>
+          <span style="font-family:'Inter',sans-serif; font-size:12px; color:oklch(0.78 0.13 75);">#weather &nbsp; #brief</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- OPTION 1C: Editorial -->
+    <section id="1c" style="display:flex; flex-direction:column; gap:16px;">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600; background:oklch(0.25 0.01 90); color:oklch(0.97 0.005 90); padding:3px 8px; border-radius:3px;">1c</span>
+        <span style="font-family:'Inter',sans-serif; font-size:14px; font-weight:600; color:oklch(0.3 0.01 90);">Editorial / Magazine — cool paper, deep emerald accent</span>
+      </div>
+
+      <div style="width:640px; background:oklch(0.98 0.002 240); border:1px solid oklch(0.86 0.005 240);">
+        <div style="padding:48px 48px 36px; border-bottom:2px solid oklch(0.2 0.01 240);">
+          <div style="display:flex; justify-content:space-between; align-items:baseline;">
+            <span style="font-family:'Fraunces',serif; font-size:26px; font-weight:600; color:oklch(0.2 0.01 240); letter-spacing:-0.01em;">Half-baked</span>
+            <div style="display:flex; gap:22px; font-family:'Inter',sans-serif; font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.04em; color:oklch(0.4 0.01 240);">
+              <span style="color:oklch(0.55 0.16 350);">Poems</span>
+              <span>About</span>
+              <span>Tags</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:40px 48px;">
+          <div style="display:flex; flex-direction:column;">
+            <a href="#" style="display:grid; grid-template-columns:70px 1fr; gap:16px; text-decoration:none; padding:20px 0; border-top:1px solid oklch(0.9 0.005 240);">
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:oklch(0.55 0.16 350); padding-top:3px;">Jul 3</span>
+              <span style="font-family:'Newsreader',serif; font-size:19px; color:oklch(0.15 0.01 240);">Small Weather</span>
+            </a>
+            <a href="#" style="display:grid; grid-template-columns:70px 1fr; gap:16px; text-decoration:none; padding:20px 0; border-top:1px solid oklch(0.9 0.005 240);">
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:oklch(0.5 0.005 240); padding-top:3px;">Jun 21</span>
+              <span style="font-family:'Newsreader',serif; font-size:19px; color:oklch(0.15 0.01 240);">Midnight Ledger</span>
+            </a>
+            <a href="#" style="display:grid; grid-template-columns:70px 1fr; gap:16px; text-decoration:none; padding:20px 0; border-top:1px solid oklch(0.9 0.005 240); border-bottom:1px solid oklch(0.9 0.005 240);">
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:oklch(0.5 0.005 240); padding-top:3px;">May 30</span>
+              <span style="font-family:'Newsreader',serif; font-size:19px; color:oklch(0.15 0.01 240);">Two Kitchens</span>
+            </a>
+          </div>
+        </div>
+
+        <div style="border-top:8px solid oklch(0.93 0.005 240); padding:48px; display:flex; flex-direction:column; gap:26px;">
+          <div style="display:flex; flex-direction:column; gap:6px;">
+            <span style="font-family:'Inter',sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color:oklch(0.55 0.16 350);">Jul 3, 2026</span>
+            <h2 style="font-family:'Fraunces',serif; font-weight:600; font-size:34px; margin:0; color:oklch(0.15 0.01 240); letter-spacing:-0.01em;">Small Weather</h2>
+          </div>
+          <div style="width:100%; aspect-ratio:16/7; background:repeating-linear-gradient(45deg, oklch(0.9 0.005 240), oklch(0.9 0.005 240) 10px, oklch(0.86 0.005 240) 10px, oklch(0.86 0.005 240) 20px); display:flex; align-items:center; justify-content:center;">
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:oklch(0.5 0.005 240);">illustration — New Yorker style spot</span>
+          </div>
+          <p style="font-family:'Newsreader',serif; font-size:20px; line-height:1.75; color:oklch(0.18 0.01 240); margin:0; max-width:46ch;">
+            The rain arrives like an old argument —<br>
+            softly, then all at once. I keep the window<br>
+            cracked an inch, just to hear it change its mind.
+          </p>
+          <span style="font-family:'Inter',sans-serif; font-size:12px; font-weight:600; color:oklch(0.55 0.16 350); text-transform:uppercase; letter-spacing:0.04em;">#weather &nbsp; #brief</span>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+</x-dc>
+</body>
+</html>
