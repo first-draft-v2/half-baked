@@ -1,5 +1,6 @@
 const { DateTime } = require("luxon");
 const markdownIt = require("markdown-it");
+// const { HtmlBasePlugin } = require("@11ty/eleventy");
 
 module.exports = function (eleventyConfig) {
   let markdownLib = markdownIt({
@@ -7,6 +8,7 @@ module.exports = function (eleventyConfig) {
     breaks: true
   });
   eleventyConfig.setLibrary("md", markdownLib);
+  // eleventyConfig.addPlugin(HtmlBasePlugin);
 
   eleventyConfig.addPassthroughCopy("css");
   eleventyConfig.addPassthroughCopy("images");
@@ -35,6 +37,6 @@ module.exports = function (eleventyConfig) {
     },
     // If deploying to https://<user>.github.io/<repo>/, set this to "/<repo>/".
     // If deploying to a custom domain or a <user>.github.io root repo, leave as "/".
-    pathPrefix: process.env.PATH_PREFIX || "/",
+    pathPrefix: "/half-baked/"
   };
 };
