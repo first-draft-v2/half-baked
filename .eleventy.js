@@ -27,6 +27,19 @@ module.exports = function (eleventyConfig) {
     return [...tagSet].sort();
   });
 
+  eleventyConfig.addCollection("sorted_books", (collectionApi) => {
+    const books = collectionApi.getAll()
+      .filter((item) => item.data.tags?.includes("books") && !!item.data.date_started);
+
+    books.sort((a, b) => {
+      if (a.data.date_started > b.data.date_started) return -1;
+      else if (a.data.date_started < b.data.date_started) return 1;
+      else return 0;
+    });
+
+    return books;
+  })
+
   return {
     dir: {
       input: ".",

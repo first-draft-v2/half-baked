@@ -1,0 +1,66 @@
+---
+layout: base.njk
+title: 📖 Books
+permalink: /lists/books/
+tags:
+  - lists
+---
+
+<table class="media-list">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Started</th>
+            <th>Finished</th>
+            <th>Rating</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for item in collections.sorted_books %}
+        <tr>
+            <td class="media-list-title">
+                <a href="{{ item.url | url }}">
+                    {{ item.data.title }}
+                </a>
+            </td>
+
+            <td>
+                {% if item.data.date_started %}
+                    <time datetime="{{ item.data.date_started | date('yyyy-MM-dd') }}">
+                        {{ item.data.date_started | date("MMM d, yyyy") }}
+                    </time>
+                {% endif %}
+            </td>
+
+            <td>
+                {% if item.data.date_finished %}
+                    <time datetime="{{ item.data.date_finished | date('yyyy-MM-dd') }}">
+                        {{ item.data.date_finished | date("MMM d, yyyy") }}
+                    </time>
+                {% endif %}
+            </td>
+
+            <td class="media-list-rating">
+                {% if item.data.rating %}
+                    <span class="rating" title="{{ item.data.rating }}/10">
+                        {% set fullStars = (item.data.rating / 2) | round(0, "floor") %}
+                        {% set halfStar = (item.data.rating % 2) >= 1 %}
+
+                        {% for i in range(0, 5) %}
+                            {% if i < fullStars %}
+                                <span class="star star-full">★</span>
+                            {% elif i == fullStars and halfStar %}
+                                <span class="star star-half">★</span>
+                            {% else %}
+                                <span class="star star-empty">☆</span>
+                            {% endif %}
+                        {% endfor %}
+                    </span>
+                {% endif %}
+            </td>
+            
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

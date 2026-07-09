@@ -1,0 +1,52 @@
+---
+layout: base.njk
+title: 📺 TV Series
+permalink: /lists/tv/
+tags:
+    - lists
+---
+
+<table class="media-list">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Started</th>
+            <th>Finished</th>
+            <th>Rating</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for item in collections.series %}
+        <tr>
+            <td class="media-list-title">
+                <a href="{{ item.url | url }}">
+                    {{ item.data.title }}
+                </a>
+            </td>
+
+            <td>
+                {% if item.data.date_started %}
+                    <time datetime="{{ item.data.date_started | date('yyyy-MM-dd') }}">
+                        {{ item.data.date_started | date("MMM d, yyyy") }}
+                    </time>
+                {% endif %}
+            </td>
+
+            <td>
+                {% if item.data.date_finished %}
+                    <time datetime="{{ item.data.date_finished | date('yyyy-MM-dd') }}">
+                        {{ item.data.date_finished | date("MMM d, yyyy") }}
+                    </time>
+                {% endif %}
+            </td>
+
+            <td class="media-list-rating">
+                {% if item.data.rating %}
+                    {{ item.data.rating }}/10
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

@@ -90,6 +90,162 @@ a:hover {
   text-decoration: none;
 }
 
+/* Lists */
+.list-index {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.list-index li {
+    border-bottom: 1px solid var(--border-color, #ddd);
+}
+
+.list-index li:last-child {
+    border-bottom: none;
+}
+
+.list-index a {
+    display: block;
+    padding: 0.75rem 0;
+    color: inherit;
+    text-decoration: none;
+}
+
+.list-index a:hover {
+    text-decoration: underline;
+}
+
+/* Review list */
+
+.media-list {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.media-list th,
+.media-list td {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border-color, #ddd);
+    vertical-align: top;
+}
+
+.media-list tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.media-list th {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted, #666);
+    text-align: left;
+}
+
+.media-list-title {
+    width: 100%;
+}
+
+.media-list-title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.media-list-title a:hover {
+    text-decoration: underline;
+}
+
+.media-list th:not(:first-child),
+.media-list td:not(:first-child) {
+    white-space: nowrap;
+    text-align: right;
+    padding-left: 2rem;
+}
+
+.media-list time {
+    color: var(--text-muted, #666);
+}     
+
+.media-list-rating {
+  font-size: 16px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.rating {
+  cursor: help;
+}
+
+.star {
+  display: inline-block;
+}
+
+.star-full {
+  color: var(--ink);
+}
+
+.star-empty {
+  color: var(--ink-faint);
+}
+
+.star-half {
+  background: linear-gradient(
+    90deg,
+    var(--ink) 50%,
+    var(--ink-faint) 50%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+
+.media-review {
+  padding: 40px 0 80px;
+}
+
+.media-review-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-faint);
+  margin: 0 0 16px;
+}
+
+.media-review-title {
+  font-family: var(--font-serif);
+  font-size: 36px;
+  color: var(--ink);
+  margin: 0 0 16px;
+}
+
+.media-review-rating {
+  font-size: 20px;
+  letter-spacing: 1px;
+  margin-bottom: 32px;
+  cursor: help;
+}
+
+.media-review-body {
+  font-family: var(--font-serif);
+  font-size: 19px;
+  line-height: 1.7;
+}
+
+.media-review-tags {
+  margin-top: 48px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.media-review-tags a {
+  color: var(--ink-faint);
+}
+
+.media-review-tags a:hover {
+  color: var(--accent);
+}
+
+
 /* Post list (homepage) */
 
 .post-list {

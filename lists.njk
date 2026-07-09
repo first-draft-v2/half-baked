@@ -1,0 +1,17 @@
+---
+layout: base.njk
+title: Lists
+permalink: /lists/
+---
+
+<div class="media-list">
+  <ul class="list-index">
+    {% for item in collections.lists %}
+      <li>
+        <a href="{{ item.url | url }}">
+          <span class="list-index-title">{{ item.data.title }}</span>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
