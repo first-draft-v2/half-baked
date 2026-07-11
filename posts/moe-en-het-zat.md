@@ -27,6 +27,7 @@ Tot we samenkomen
 En samen komen
 In naam van poëzie 
 Maar het betekent niks.
+
 Nu is ze dood, klein en groot.
 Is dit een gedicht,
 of lijkt het maar zo?
