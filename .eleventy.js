@@ -21,15 +21,15 @@ module.exports = function (eleventyConfig) {
     const tagSet = new Set();
     collectionApi.getAll().forEach((item) => {
       (item.data.tags || []).forEach((tag) => {
-        if (tag !== "post") tagSet.add(tag);
+        if (tag !== "post" && tag !== "lists") tagSet.add(tag);
       });
     });
     return [...tagSet].sort();
   });
 
-  eleventyConfig.addCollection("sorted_books", (collectionApi) => {
+  eleventyConfig.addCollection("books", (collectionApi) => {
     const books = collectionApi.getAll()
-      .filter((item) => item.data.tags?.includes("books") && !!item.data.date_started);
+      .filter((item) => item.data.type == 'book' && !!item.data.date_started);
 
     books.sort((a, b) => {
       if (a.data.date_started > b.data.date_started) return -1;
@@ -39,6 +39,20 @@ module.exports = function (eleventyConfig) {
 
     return books;
   })
+
+    eleventyConfig.addCollection("films", (collectionApi) => {
+      const films = collectionApi.getAll()
+        .filter((item) => item.data.type == 'film' && !!item.data.date);
+
+      return films;
+    })
+
+    eleventyConfig.addCollection("series", (collectionApi) => {
+      const series = collectionApi.getAll()
+        .filter((item) => item.data.type == 'series');
+
+      return series;
+    })
 
   return {
     dir: {

@@ -4,7 +4,9 @@ title: Some test book
 date_started: 2026-07-04
 # date_finished: 2026-07-10
 rating: 3
+type: book
 tags:
-    - books
+    - review
+    - post
 ---
 Here is a small test review of a book
