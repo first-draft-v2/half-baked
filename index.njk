@@ -5,7 +5,7 @@ layout: base.njk
   "oklch(96.6% 0.005 106.5)"
 ] %}
 <div>
-  {% for post in collections.post %}
+  {% for post in collections.posts | sortByLastDate %}
     {% if post.content %}
       <article class="post" >
         <p class="post-eyebrow">{{ post | extractDate | date("MMM d, yyyy") }}</p>

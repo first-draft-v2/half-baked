@@ -10,7 +10,8 @@
 <body>
   <header class="site-header">
     <div class="wrap">
-      <a class="site-title" href="{{ '/' | url }}">Half-baked</a>
+    {% set _title = 'Halfbakken' if tags and tags.includes('dutch') else 'Half-baked' %}
+      <a class="site-title" href="{{ '/' | url }}">{{ _title }}</a>
       <nav class="site-nav">
         <a href="{{ '/' | url }}" class="{% if page.url == '/' %}active{% endif %}">Home</a>
         <a href="{{ '/posts/' | url }}" class="{% if page.url == '/posts/' %}active{% endif %}">Posts</a>

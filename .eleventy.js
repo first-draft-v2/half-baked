@@ -14,7 +14,7 @@ const extractDate = (obj) => {
   return date;
 }
 
-const sortByDateFinished = (a, b) => {
+const sortByLastDate = (a, b) => {
   const sortDateA = extractDate(a)
   const sortDateB = extractDate(b)
 
@@ -23,9 +23,9 @@ const sortByDateFinished = (a, b) => {
   else return 0;
 }
 
-function sortByStuff(values) {
+function sortByLastDateImmutable(values) {
   let copy = [...values];
-  return copy.sort(sortByDateFinished);
+  return copy.sort(sortByLastDate);
 }
 
 module.exports = function (eleventyConfig) {
@@ -61,7 +61,14 @@ module.exports = function (eleventyConfig) {
     return books;
   })
 
-  eleventyConfig.addFilter("sortByCompleted", sortByStuff);
+  eleventyConfig.addCollection("posts", (collectionApi) => {
+    const posts = collectionApi.getAll()
+      .filter((item) => !item.data.draft && item.data?.tags?.includes('post'))
+
+    return posts;
+  })
+
+  eleventyConfig.addFilter("sortByLastDate", sortByLastDateImmutable);
   eleventyConfig.addFilter("extractDate", extractDate);
   eleventyConfig.addNunjucksGlobal("extractDate", extractDate);
 

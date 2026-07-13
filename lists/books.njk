@@ -16,7 +16,7 @@ tags:
     </thead>
 
     <tbody>
-        {% for item in collections.books | sortByCompleted %}
+        {% for item in collections.books | sortByLastDate %}
         <tr>
             <td class="media-list-title">
                 <a href="{{ item.url | url }}">
