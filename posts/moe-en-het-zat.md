@@ -7,25 +7,25 @@ tags:
   - poetry
   - dutch
 ---
-Mijn humor is om alles letterlijk te nemen
-Het is doodvermoeiend, maar ik kan ermee leven
+Mijn humor is om alles letterlijk te nemen.
+Het is doodvermoeiend, maar ik kan ermee leven.
 
-Die dubbelzinnigheid, zo diep.
+Die dubbelzinnigheid, zo diep,
 Die dubbelzinnigheid, zó diep.
 
-Elk woord is letterlijk te nemen
-En letterlijk te nemen
+Elk woord is letterlijk te nemen,
+En letterlijk te nemen.
 Zo diep, 
 en zo diep
 Penetreer ik de taal
-Van twee kanten
-Verkracht en ontkracht ik haar
+Van twee kanten.
+Verkracht en ontkracht ik haar,
 Reduceer ik haar
 Letterlijk en figuurlijk
-Tot een serie klanken
+Tot een serie klanken,
 Tot we samenkomen
 En samen komen
-In naam van poëzie 
+In naam van poëzie.
 
 Maar het betekent niks.
 Dus nu is ze dood - klein en groot.
