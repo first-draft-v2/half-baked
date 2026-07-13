@@ -268,7 +268,7 @@ a:hover {
 
 .post-list a {
   display: grid;
-  grid-template-columns: 70px 1fr;
+  grid-template-columns: 100px 1fr;
   gap: 16px;
   padding: 20px 0;
   color: inherit;

@@ -6,6 +6,6 @@ date_finished: 2012-05-06
 rating: 7.5
 type: book
 tags:
-    - review
+    - reviews
     - post
 ---

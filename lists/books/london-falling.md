@@ -6,6 +6,6 @@ date_started: 2026-07-08
 rating:
 type: book
 tags:
-    - review
+    - reviews
     - post
 ---

@@ -6,7 +6,7 @@ date_finished: 2012-07-28
 rating: 8
 type: book
 tags:
-    - review
+    - reviews
     - post
 ---
 Loved it. Now I have to reread it.
