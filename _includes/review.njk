@@ -3,7 +3,9 @@ layout: base.njk
 ---
 
 <article class="media-review">
-  <p class="media-review-eyebrow">{{ page.date | date("MMM d, yyyy") }}</p>
+  <p class="media-review-eyebrow">
+    {{ extractDate({date_finished: date_finished, date_watched: date_watched, date: page.date }) | date("MMM d, yyyy") }}
+  </p>
 
   <h1 class="media-review-title">{{ title }}</h1>
 

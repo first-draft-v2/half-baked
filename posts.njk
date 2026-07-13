@@ -9,7 +9,7 @@ permalink: /posts/
       {% if post.content %}
         <li>
           <a href="{{ post.url | url }}">
-            <span class="post-list-date">{{ post.date | date("MMM d, yyyy") }}</span>
+            <span class="post-list-date">{{ post | extractDate | date("MMM d, yyyy") }}</span>
             <span class="post-list-title">{{ post.data.title }}</span>
           </a>
         </li>

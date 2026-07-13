@@ -2,7 +2,16 @@ const { DateTime } = require("luxon");
 const markdownIt = require("markdown-it");
 
 const extractDate = (obj) => {
-  return obj.data?.date_finished || obj.data?.date_started || obj.date
+  const date = obj.data?.date_finished 
+    || obj.data?.date_started 
+    || obj.date_finished 
+    || obj.date_started 
+    || obj.date;
+
+  if (typeof date === "string") {
+    return new Date(date);
+  }
+  return date;
 }
 
 const sortByDateFinished = (a, b) => {
@@ -53,6 +62,8 @@ module.exports = function (eleventyConfig) {
   })
 
   eleventyConfig.addFilter("sortByCompleted", sortByStuff);
+  eleventyConfig.addFilter("extractDate", extractDate);
+  eleventyConfig.addNunjucksGlobal("extractDate", extractDate);
 
   eleventyConfig.addCollection("films", (collectionApi) => {
     const films = collectionApi.getAll()

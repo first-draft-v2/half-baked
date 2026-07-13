@@ -2,7 +2,7 @@
 layout: base.njk
 ---
 <article class="post">
-  <p class="post-eyebrow">{{ page.date | date("MMM d, yyyy") }}</p>
+  <p class="post-eyebrow">{{ page | extractDate | date("MMM d, yyyy") }}</p>
   <h1 class="post-title">{{ title }}</h1>
 
   {% if image %}

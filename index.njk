@@ -8,7 +8,7 @@ layout: base.njk
   {% for post in collections.post %}
     {% if post.content %}
       <article class="post" >
-        <p class="post-eyebrow">{{ post.date | date("MMM d, yyyy") }}</p>
+        <p class="post-eyebrow">{{ post | extractDate | date("MMM d, yyyy") }}</p>
         <h2 class="post-title"><a href="{{ post.url | url }}">{{ post.data.title }}</a></h2>
         {% if post.data.image %}
           <img class="post-image" src="{{ post.data.image | url }}" alt="{{ post.data.imageAlt or '' }}">
