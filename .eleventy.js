@@ -1,6 +1,24 @@
 const { DateTime } = require("luxon");
 const markdownIt = require("markdown-it");
 
+const extractDate = (obj) => {
+  return obj.data?.date_finished || obj.data?.date_started || obj.date
+}
+
+const sortByDateFinished = (a, b) => {
+  const sortDateA = extractDate(a)
+  const sortDateB = extractDate(b)
+
+  if (sortDateA > sortDateB) return -1;
+  else if (sortDateA < sortDateB) return 1;
+  else return 0;
+}
+
+function sortByStuff(values) {
+  let copy = [...values];
+  return copy.sort(sortByDateFinished);
+}
+
 module.exports = function (eleventyConfig) {
   let markdownLib = markdownIt({
     html: true,
@@ -29,30 +47,26 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addCollection("books", (collectionApi) => {
     const books = collectionApi.getAll()
-      .filter((item) => item.data.type == 'book' && !!item.data.date_started);
-
-    books.sort((a, b) => {
-      if (a.data.date_started > b.data.date_started) return -1;
-      else if (a.data.date_started < b.data.date_started) return 1;
-      else return 0;
-    });
+      .filter((item) => item.data.type == 'book' && !!item.data.date_started || !!item.data.date_finished);
 
     return books;
   })
 
-    eleventyConfig.addCollection("films", (collectionApi) => {
-      const films = collectionApi.getAll()
-        .filter((item) => item.data.type == 'film' && !!item.data.date);
+  eleventyConfig.addFilter("sortByCompleted", sortByStuff);
 
-      return films;
-    })
+  eleventyConfig.addCollection("films", (collectionApi) => {
+    const films = collectionApi.getAll()
+      .filter((item) => item.data.type == 'film' && !!item.data.date);
 
-    eleventyConfig.addCollection("series", (collectionApi) => {
-      const series = collectionApi.getAll()
-        .filter((item) => item.data.type == 'series');
+    return films;
+  })
 
-      return series;
-    })
+  eleventyConfig.addCollection("series", (collectionApi) => {
+    const series = collectionApi.getAll()
+      .filter((item) => item.data.type == 'series');
+
+    return series;
+  })
 
   return {
     dir: {

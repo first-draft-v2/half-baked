@@ -26,9 +26,9 @@ Tot een serie klanken
 Tot we samenkomen
 En samen komen
 In naam van poëzie 
-Maar het betekent niks.
 
-Nu is ze dood, klein en groot.
+Maar het betekent niks.
+Dus nu is ze dood - klein en groot.
 Is dit een gedicht,
 of lijkt het maar zo?
 
@@ -36,3 +36,5 @@ Ik kan ermee leven,
 Ik moet ermee leven,
 Maar ik ben moe, 
 Ik ben het zat.
+
+\- Moe en Het Zat

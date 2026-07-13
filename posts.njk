@@ -5,13 +5,15 @@ permalink: /posts/
 ---
 <div class="post-list">
   <ol reversed>
-    {% for post in collections.post | reverse %}
-      <li>
-        <a href="{{ post.url | url }}">
-          <span class="post-list-date">{{ post.date | date("MMM d") }}</span>
-          <span class="post-list-title">{{ post.data.title }}</span>
-        </a>
-      </li>
+    {% for post in collections.post | sortByCompleted %}
+      {% if post.content %}
+        <li>
+          <a href="{{ post.url | url }}">
+            <span class="post-list-date">{{ post.date | date("MMM d, yyyy") }}</span>
+            <span class="post-list-title">{{ post.data.title }}</span>
+          </a>
+        </li>
+      {% endif %}
     {% endfor %}
   </ol>
 </div>

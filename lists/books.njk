@@ -10,14 +10,13 @@ tags:
     <thead>
         <tr>
             <th>Title</th>
-            <th>Started</th>
             <th>Finished</th>
             <th>Rating</th>
         </tr>
     </thead>
 
     <tbody>
-        {% for item in collections.books %}
+        {% for item in collections.books | sortByCompleted %}
         <tr>
             <td class="media-list-title">
                 <a href="{{ item.url | url }}">
@@ -26,17 +25,9 @@ tags:
             </td>
 
             <td>
-                {% if item.data.date_started %}
-                    <time datetime="{{ item.data.date_started | date('yyyy-MM-dd') }}">
-                        {{ item.data.date_started | date("MMM d, yyyy") }}
-                    </time>
-                {% endif %}
-            </td>
-
-            <td>
                 {% if item.data.date_finished %}
                     <time datetime="{{ item.data.date_finished | date('yyyy-MM-dd') }}">
-                        {{ item.data.date_finished | date("MMM d, yyyy") }}
+                        {{ item.data.date_finished | date("MM/dd/yyyy") }}
                     </time>
                 {% endif %}
             </td>
