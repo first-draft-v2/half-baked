@@ -1,6 +1,6 @@
 ---
 layout: review.njk
-title: "The Trading Game: A Confession"
+title: "The Trading Game"
 author: "Gary  Stevenson"
 date_added: 2024-08-05
 rating: 8

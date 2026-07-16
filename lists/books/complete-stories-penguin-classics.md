@@ -1,6 +1,6 @@
 ---
 layout: review.njk
-title: "Complete Stories (Penguin Classics)"
+title: "Complete Stories"
 author: "Dorothy Parker"
 date_added: 2015-05-06
 rating: 8

@@ -1,6 +1,6 @@
 ---
 layout: review.njk
-title: "The Handmaid’s Tale (The Handmaid's Tale, #1)"
+title: "The Handmaid’s Tale"
 author: "Margaret Atwood"
 date_added: 2016-01-13
 rating: 8

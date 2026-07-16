@@ -1,6 +1,6 @@
 ---
 layout: review.njk
-title: "Blacksad (Blacksad, #1-3)"
+title: "Blacksad"
 author: "Juan Díaz Canales"
 date_added: 2015-11-02
 rating: 6

@@ -1,6 +1,6 @@
 ---
 layout: review.njk
-title: "The Hunger Games (The Hunger Games, #1)"
+title: "The Hunger Games"
 author: "Suzanne Collins"
 date_added: 2010-06-29
 rating: 6

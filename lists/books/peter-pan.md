@@ -1,6 +1,6 @@
 ---
 layout: review.njk
-title: "Peter Pan (Peter Pan, #2)"
+title: "Peter Pan"
 author: "J.M. Barrie"
 date_added: 2015-06-12
 rating: 6

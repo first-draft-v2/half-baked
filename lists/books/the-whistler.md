@@ -1,6 +1,6 @@
 ---
 layout: review.njk
-title: "The Whistler (The Whistler, #1)"
+title: "The Whistler"
 author: "John Grisham"
 date_added: 2018-04-09
 rating: 2

@@ -1,6 +1,6 @@
 ---
 layout: review.njk
-title: "American Gods (American Gods, #1)"
+title: "American Gods)"
 author: "Neil Gaiman"
 date_added: 2018-10-18
 rating: 6

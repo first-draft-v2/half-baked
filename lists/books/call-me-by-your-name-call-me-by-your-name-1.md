@@ -1,6 +1,6 @@
 ---
 layout: review.njk
-title: "Call Me By Your Name (Call Me By Your Name, #1)"
+title: "Call Me By Your Name"
 author: "André Aciman"
 date_added: 2018-12-24
 rating: 4

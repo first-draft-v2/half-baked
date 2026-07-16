@@ -1,6 +1,6 @@
 ---
 layout: review.njk
-title: "Eragon (The Inheritance Cycle #1)"
+title: "Eragon"
 author: "Christopher Paolini"
 date_added: 2010-06-29
 rating: 6

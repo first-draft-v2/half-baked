@@ -1,6 +1,6 @@
 ---
 layout: review.njk
-title: "The Girl with All the Gifts (The Girl With All the Gifts, #1)"
+title: "The Girl with All the Gifts"
 author: "M.R. Carey"
 date_finished: 2017-10-03
 date_added: 2017-09-30

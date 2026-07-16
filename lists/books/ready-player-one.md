@@ -1,6 +1,6 @@
 ---
 layout: review.njk
-title: "Ready Player One (Ready Player One, #1)"
+title: "Ready Player One"
 author: "Ernest Cline"
 date_finished: 2017-09-07
 date_added: 2017-09-07
