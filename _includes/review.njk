@@ -37,7 +37,7 @@ layout: base.njk
     <div class="media-review-tags">
       {% for tag in tags %}
         {% if tag != "post" %}
-          <a href="{{ ('/tags/' + tag + '/') | url }}">#{{ tag }}</a>
+          <a href="{{ ('/tags/#tag-' + tag) | url }}">#{{ tag }}</a>
         {% endif %}
       {% endfor %}
     </div>

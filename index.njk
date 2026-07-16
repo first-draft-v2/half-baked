@@ -2,8 +2,22 @@
 layout: base.njk
 ---
 <div class="post-stack">
+  {% set previousYear = null %}
+  {% set archiveStarted = false %}
   {% for post in collections.posts | sortByLastDate %}
     {% if post.content %}
+      {% set postYear = post | extractDate | date("yyyy") %}
+      {% if previousYear and postYear != previousYear %}
+        {% if not archiveStarted %}
+          <div class="archive-notice">
+            <span aria-hidden="true">🕷️</span><strong>Beware: Old Content Below</strong><span aria-hidden="true">🕷️</span>
+          </div>
+          {% set archiveStarted = true %}
+        {% endif %}
+        <div class="year-separator">
+          <span>{{ postYear }}</span>
+        </div>
+      {% endif %}
       {% set postType = "post" %}
       {% if post.data.tags and "reviews" in post.data.tags %}
         {% set postType = "review" %}
@@ -25,11 +39,12 @@ layout: base.njk
         {% if post.data.tags %}
           <div class="post-tags">
             {% for tag in post.data.tags %}
-              {% if tag != "post" %}<a href="{{ ('/tags/' + tag + '/') | url }}">#{{ tag }}</a>{% endif %}
+              {% if tag != "post" %}<a href="{{ ('/tags/#tag-' + tag) | url }}">#{{ tag }}</a>{% endif %}
             {% endfor %}
           </div>
         {% endif %}
       </article>
+      {% set previousYear = postYear %}
     {% endif %}
   {% endfor %}
 </div>

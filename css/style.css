@@ -7,14 +7,18 @@
   --ink: oklch(0.15 0.01 240);
   --ink-soft: oklch(0.4 0.01 240);
   --ink-faint: oklch(0.5 0.005 240);
-  --accent: oklch(0.55 0.16 350);
-  --poem: oklch(0.48 0.12 292);
-  --misc: oklch(0.45 0.1 178);
-  --review: oklch(0.47 0.1 65);
-  --post-border: oklch(0.78 0.08 350);
-  --poem-border: oklch(0.76 0.075 292);
-  --misc-border: oklch(0.73 0.065 178);
-  --review-border: oklch(0.76 0.075 65);
+
+  /* Main type colours */
+  --accent: oklch(0.58 0.22 350); /* vivid pink */
+  --poem:   oklch(0.56 0.19 265); /* electric blue */
+  --misc:   oklch(0.54 0.16 160); /* emerald green */
+  --review: oklch(0.58 0.17 65);  /* clear orange */
+
+  /* Matching borders */
+  --post-border:   oklch(0.80 0.10 350);
+  --poem-border:   oklch(0.79 0.09 265);
+  --misc-border:   oklch(0.78 0.08 160);
+  --review-border: oklch(0.81 0.09 65);
 
   --font-display: 'Fraunces', serif;
   --font-serif: 'Newsreader', serif;
@@ -27,8 +31,12 @@
 html, body {
   margin: 0;
   padding: 0;
-  background: var(--paper);
+  background-color: #fff;
   color: var(--ink);
+}
+
+html {
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -78,9 +86,7 @@ a:hover {
 /* Header */
 
 .site-header {
-  border-bottom: 2px solid var(--border-strong);
-  padding: 40px 0 28px;
-  margin-bottom: 8px;
+  padding: 40px 0 10px;
 }
 
 .site-header .wrap {
@@ -92,11 +98,45 @@ a:hover {
 }
 
 .site-title {
+  position: relative;
+  align-self: flex-start;
+  padding-bottom: 5px;
   font-family: var(--font-display);
   font-size: 26px;
   font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--ink);
+}
+
+.site-title::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    var(--accent) 0 25%,
+    var(--poem) 25% 50%,
+    var(--misc) 50% 75%,
+    var(--review) 75% 100%
+  );
+}
+
+.site-title:hover {
+  color: transparent;
+  text-decoration: none;
+  background: linear-gradient(
+    90deg,
+    var(--accent) 0 25%,
+    var(--poem) 25% 50%,
+    var(--misc) 50% 75%,
+    var(--review) 75% 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
 }
 
 .site-brand {
@@ -108,6 +148,7 @@ a:hover {
   font-size: 0.9rem;
   color: var(--muted, #666);
   line-height: 1.4;
+  margin-top: 5px;
 }
 
 .site-nav {
@@ -140,17 +181,12 @@ a:hover {
 }
 
 .list-directory ul {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   margin: 0;
   padding: 0;
   list-style: none;
-}
-
-.list-directory li {
-  border-top: 1px solid var(--border);
-}
-
-.list-directory li:last-child {
-  border-bottom: 1px solid var(--border);
 }
 
 .list-directory a {
@@ -167,8 +203,21 @@ a:hover {
 }
 
 .list-directory-title {
+  display: flex;
+  align-items: baseline;
   font-family: var(--font-serif);
   font-size: 21px;
+}
+
+.list-directory-emoji {
+  margin-right: 12px;
+}
+
+.list-directory-count {
+  margin-left: 6px;
+  color: var(--ink-faint);
+  font-family: var(--font-mono);
+  font-size: 12px;
 }
 
 .list-directory-arrow {
@@ -193,12 +242,7 @@ a:hover {
 .media-list th,
 .media-list td {
   padding: 0.6rem 0;
-  border-bottom: 1px solid var(--border);
   vertical-align: top;
-}
-
-.media-list tbody tr:last-child td {
-  border-bottom: none;
 }
 
 .media-list th {
@@ -325,6 +369,9 @@ a:hover {
 }
 
 .post-list ol {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -332,30 +379,31 @@ a:hover {
 
 .post-list li {
   --type-color: var(--accent);
-  border-top: 1px solid var(--border);
+  --type-border: var(--post-border);
+  border-left: 3px solid var(--type-border);
 }
 
 .post-list .post-list-item--poem {
   --type-color: var(--poem);
+  --type-border: var(--poem-border);
 }
 
 .post-list .post-list-item--misc {
   --type-color: var(--misc);
+  --type-border: var(--misc-border);
 }
 
 .post-list .post-list-item--review {
   --type-color: var(--review);
-}
-
-.post-list li:last-child {
-  border-bottom: 1px solid var(--border);
+  --type-border: var(--review-border);
 }
 
 .post-list a {
   display: grid;
   grid-template-columns: 100px minmax(0, 1fr) auto;
+  align-items: center;
   gap: 16px;
-  padding: 20px 0;
+  padding: 16px 16px;
   color: inherit;
 }
 
@@ -371,7 +419,6 @@ a:hover {
   font-family: var(--font-mono);
   font-size: 12px;
   color: var(--ink-faint);
-  padding-top: 3px;
 }
 
 .post-list-title {
@@ -390,13 +437,72 @@ a:hover {
   text-transform: uppercase;
 }
 
+/* Archive year separators */
+
+.year-separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--ink-faint);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.year-separator::before,
+.year-separator::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.post-stack > .year-separator {
+  margin: 20px 2px 8px;
+}
+
+.post-list li.year-separator {
+  padding: 30px 0 16px;
+  border-left: 0;
+  color: var(--ink-soft);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.year-separator--archive {
+  color: var(--ink);
+}
+
+.archive-notice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 34px;
+  margin-bottom: 4px;
+  padding: 13px 16px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-shadow: 0 5px 18px oklch(20% 0.01 240 / 0.045);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
 /* Homepage post stack */
 
 .post-stack {
   padding: 32px 0 80px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 30px;
 }
 
 .post-card {
@@ -675,6 +781,7 @@ a:hover {
 
 .tag-group {
   margin: 0 0 40px;
+  scroll-margin-top: 24px;
 }
 
 .tag-group h2 {
@@ -780,7 +887,7 @@ a:hover {
 
   .post-stack {
     padding-top: 22px;
-    gap: 14px;
+    gap: 22px;
   }
 
   .post-card {

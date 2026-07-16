@@ -10,8 +10,21 @@ permalink: /posts/
   </header>
 
   <ol reversed>
+    {% set previousYear = null %}
+    {% set archiveStarted = false %}
     {% for post in collections.posts | sortByLastDate %}
       {% if post.content %}
+        {% set postYear = post | extractDate | date("yyyy") %}
+        {% if previousYear and postYear != previousYear %}
+          <li class="year-separator{% if not archiveStarted %} year-separator--archive{% endif %}">
+            {% if not archiveStarted %}
+              <span>{{ postYear }}</span>
+              {% set archiveStarted = true %}
+            {% else %}
+              <span>{{ postYear }}</span>
+            {% endif %}
+          </li>
+        {% endif %}
         {% set postType = "post" %}
         {% if post.data.tags and "reviews" in post.data.tags %}
           {% set postType = "review" %}
@@ -27,6 +40,7 @@ permalink: /posts/
             <span class="post-list-kind">{{ postType }}</span>
           </a>
         </li>
+        {% set previousYear = postYear %}
       {% endif %}
     {% endfor %}
   </ol>

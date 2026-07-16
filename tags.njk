@@ -8,7 +8,7 @@ eleventyExcludeFromCollections: true
 
   {% set tagList = collections.tagList %}
   {% for tag in tagList %}
-    <div class="tag-group tag-group--{{ tag }}">
+    <div class="tag-group tag-group--{{ tag }}" id="tag-{{ tag }}">
       <h2>#{{ tag }}</h2>
       <ol class="tag-group-list">
         {% for post in collections[tag] | reverse %}

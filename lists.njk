@@ -7,14 +7,18 @@ permalink: /lists/
 <div class="list-directory">
   <header class="archive-header">
     <h1>Lists</h1>
-    <p>Books, films, and series—finished, watched, and occasionally reviewed.</p>
+    <p>Reviews, ratings and rankings.</p>
   </header>
 
   <ul>
-    {% for item in collections.lists %}
+    {% for item in collections.lists | sort(false, false, "data.listOrder") %}
       <li>
         <a href="{{ item.url | url }}">
-          <span class="list-directory-title">{{ item.data.title }}</span>
+          <span class="list-directory-title">
+            <span class="list-directory-emoji" aria-hidden="true">{{ item.data.listEmoji }}</span>
+            <span>{{ item.data.listLabel }}</span>
+            <span class="list-directory-count">({{ collections[item.data.listCollection] | length }})</span>
+          </span>
           <span class="list-directory-arrow" aria-hidden="true">→</span>
         </a>
       </li>
