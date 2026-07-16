@@ -1,8 +1,17 @@
 ---
 layout: base.njk
 ---
-<article class="post">
-  <p class="post-eyebrow">{{ page | extractDate | date("MMM d, yyyy") }}</p>
+{% set postType = "post" %}
+{% if tags and "poetry" in tags %}
+  {% set postType = "poem" %}
+{% elseif tags and "misc" in tags %}
+  {% set postType = "misc" %}
+{% endif %}
+<article class="post post--{{ postType }}">
+  <div class="post-card-meta">
+    <span class="post-kind">{{ postType }}</span>
+    <time datetime="{{ page.date | date('yyyy-MM-dd') }}">{{ page | extractDate | date("MMM d, yyyy") }}</time>
+  </div>
   <h1 class="post-title">{{ title }}</h1>
 
   {% if image %}

@@ -4,13 +4,27 @@ title: Posts
 permalink: /posts/
 ---
 <div class="post-list">
+  <header class="archive-header">
+    <h1>Posts</h1>
+    <p>Poems, notes, reviews, and other half-baked thoughts.</p>
+  </header>
+
   <ol reversed>
     {% for post in collections.posts | sortByLastDate %}
       {% if post.content %}
-        <li>
+        {% set postType = "post" %}
+        {% if post.data.tags and "reviews" in post.data.tags %}
+          {% set postType = "review" %}
+        {% elseif post.data.tags and "poetry" in post.data.tags %}
+          {% set postType = "poem" %}
+        {% elseif post.data.tags and "misc" in post.data.tags %}
+          {% set postType = "misc" %}
+        {% endif %}
+        <li class="post-list-item--{{ postType }}">
           <a href="{{ post.url | url }}">
             <span class="post-list-date">{{ post | extractDate | date("MMM dd, yyyy") }}</span>
             <span class="post-list-title">{{ post.data.title }}</span>
+            <span class="post-list-kind">{{ postType }}</span>
           </a>
         </li>
       {% endif %}

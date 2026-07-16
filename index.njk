@@ -1,14 +1,22 @@
 ---
 layout: base.njk
 ---
-{% set cardColors = [
-  "oklch(96.6% 0.005 106.5)"
-] %}
-<div>
+<div class="post-stack">
   {% for post in collections.posts | sortByLastDate %}
     {% if post.content %}
-      <article class="post" >
-        <p class="post-eyebrow">{{ post | extractDate | date("MMM d, yyyy") }}</p>
+      {% set postType = "post" %}
+      {% if post.data.tags and "reviews" in post.data.tags %}
+        {% set postType = "review" %}
+      {% elseif post.data.tags and "poetry" in post.data.tags %}
+        {% set postType = "poem" %}
+      {% elseif post.data.tags and "misc" in post.data.tags %}
+        {% set postType = "misc" %}
+      {% endif %}
+      <article class="post-card post-card--{{ postType }}">
+        <div class="post-card-meta">
+          <span class="post-kind">{{ postType }}</span>
+          <time datetime="{{ post.date | date('yyyy-MM-dd') }}">{{ post | extractDate | date("MMM d, yyyy") }}</time>
+        </div>
         <h2 class="post-title"><a href="{{ post.url | url }}">{{ post.data.title }}</a></h2>
         {% if post.data.image %}
           <img class="post-image" src="{{ post.data.image | url }}" alt="{{ post.data.imageAlt or '' }}">

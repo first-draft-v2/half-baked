@@ -4,12 +4,18 @@ title: Lists
 permalink: /lists/
 ---
 
-<div class="media-list">
-  <ul class="list-index">
+<div class="list-directory">
+  <header class="archive-header">
+    <h1>Lists</h1>
+    <p>Books, films, and series—finished, watched, and occasionally reviewed.</p>
+  </header>
+
+  <ul>
     {% for item in collections.lists %}
       <li>
         <a href="{{ item.url | url }}">
-          <span class="list-index-title">{{ item.data.title }}</span>
+          <span class="list-directory-title">{{ item.data.title }}</span>
+          <span class="list-directory-arrow" aria-hidden="true">→</span>
         </a>
       </li>
     {% endfor %}

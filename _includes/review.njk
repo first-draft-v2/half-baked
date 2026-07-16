@@ -2,10 +2,13 @@
 layout: base.njk
 ---
 
-<article class="media-review">
-  <p class="media-review-eyebrow">
-    {{ extractDate({date_finished: date_finished, date_watched: date_watched, date: page.date }) | date("MMM d, yyyy") }}
-  </p>
+<article class="media-review post--review">
+  <div class="post-card-meta">
+    <span class="post-kind">review</span>
+    <time datetime="{{ extractDate({date_finished: date_finished, date_watched: date_watched, date: page.date }) | date('yyyy-MM-dd') }}">
+      {{ extractDate({date_finished: date_finished, date_watched: date_watched, date: page.date }) | date("MMM d, yyyy") }}
+    </time>
+  </div>
 
   <h1 class="media-review-title">{{ title }}</h1>
 

@@ -8,14 +8,14 @@ eleventyExcludeFromCollections: true
 
   {% set tagList = collections.tagList %}
   {% for tag in tagList %}
-    <div class="tag-group">
+    <div class="tag-group tag-group--{{ tag }}">
       <h2>#{{ tag }}</h2>
-      <ol style="list-style:none; margin:0; padding:0;">
+      <ol class="tag-group-list">
         {% for post in collections[tag] | reverse %}
           {% if post.data.tags and "post" in post.data.tags and post.content %}
-            <li style="border-top:1px solid var(--border); padding:12px 0;">
-              <a href="{{ post.url | url }}" class="post-list-title" style="font-family:var(--font-serif); font-size:18px;">{{ post.data.title }}</a>
-              <span class="post-list-date" style="margin-left:12px;">{{ post.date | date("MMM d, yyyy") }}</span>
+            <li class="tag-group-item">
+              <a href="{{ post.url | url }}" class="tag-group-title">{{ post.data.title }}</a>
+              <span class="tag-group-date">{{ post.date | date("MMM d, yyyy") }}</span>
             </li>
           {% endif %}
         {% endfor %}

@@ -1,5 +1,6 @@
 const { DateTime } = require("luxon");
 const markdownIt = require("markdown-it");
+const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 
 const extractDate = (obj) => {
   const date = obj.data?.date_finished 
@@ -29,6 +30,8 @@ function sortByLastDateImmutable(values) {
 }
 
 module.exports = function (eleventyConfig) {
+  eleventyConfig.addPlugin(syntaxHighlight);
+
   let markdownLib = markdownIt({
     html: true,
     breaks: true
