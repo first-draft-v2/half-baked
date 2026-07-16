@@ -3,11 +3,13 @@ const markdownIt = require("markdown-it");
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 
 const extractDate = (obj) => {
-  const date = obj.data?.date_finished 
-    || obj.data?.date_started 
-    || obj.date_finished 
-    || obj.date_started 
-    || obj.date;
+  const date = obj?.data?.date_finished
+    || obj?.data?.date_started
+    || obj?.data?.date_added
+    || obj?.date_finished
+    || obj?.date_started
+    || obj?.date_added
+    || obj?.date;
 
   if (typeof date === "string") {
     return new Date(date);
@@ -40,6 +42,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy("css");
   eleventyConfig.addPassthroughCopy("images");
+  eleventyConfig.addPassthroughCopy("js");
 
   eleventyConfig.addFilter("date", (dateObj, format) => {
     return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat(format);
@@ -51,7 +54,7 @@ module.exports = function (eleventyConfig) {
     const tagSet = new Set();
     collectionApi.getAll().forEach((item) => {
       (item.data.tags || []).forEach((tag) => {
-        if (tag !== "post" && tag !== "lists") tagSet.add(tag);
+        if (tag !== "post" && tag !== "lists" && tag !== "abandoned") tagSet.add(tag);
       });
     });
     return [...tagSet].sort();
@@ -59,7 +62,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addCollection("books", (collectionApi) => {
     const books = collectionApi.getAll()
-      .filter((item) => item.data.type == 'book' && !!item.data.date_started || !!item.data.date_finished);
+      .filter((item) => item.data.type == 'book');
 
     return books;
   })
@@ -69,6 +72,14 @@ module.exports = function (eleventyConfig) {
       .filter((item) => !item.data.draft && item.data?.tags?.includes('post'))
 
     return posts;
+  })
+
+  eleventyConfig.addCollection("feedPosts", (collectionApi) => {
+    return collectionApi.getAll()
+      .filter((item) => !item.data.draft
+        && item.data?.tags?.includes('post')
+        && item.rawInput?.trim())
+      .sort(sortByLastDate);
   })
 
   eleventyConfig.addFilter("sortByLastDate", sortByLastDateImmutable);

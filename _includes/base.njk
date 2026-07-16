@@ -6,6 +6,7 @@
   <title>{% if title %}{{ title }} — {% endif %}Half-baked</title>
   <meta name="description" content="{{ description or 'Short poems and stories.' }}">
   <link rel="stylesheet" href="{{ '/css/style.css' | url }}">
+  <script src="{{ '/js/site.js' | url }}" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -17,8 +18,8 @@
       </div>
 
       <nav class="site-nav">
-        <a href="{{ '/' | url }}" class="{% if page.url == '/' %}active{% endif %}">Home</a>
-        <a href="{{ '/posts/' | url }}" class="{% if page.url == '/posts/' %}active{% endif %}">Posts</a>
+        <a href="{{ '/' | url }}" class="{% if page.url == '/' or page.url.startsWith('/page/') %}active{% endif %}">Home</a>
+        <a href="{{ '/posts/' | url }}" class="{% if page.url == '/posts/' or page.url.startsWith('/posts/page/') %}active{% endif %}">Posts</a>
         <a href="{{ '/lists/' | url }}" class="{% if page.url == '/lists/' %}active{% endif %}">Lists</a>
         <a href="{{ '/about/' | url }}" class="{% if page.url == '/about/' %}active{% endif %}">About</a>
         <a href="{{ '/tags/' | url }}" class="{% if page.url == '/tags/' %}active{% endif %}">Tags</a>

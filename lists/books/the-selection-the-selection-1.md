@@ -1,0 +1,12 @@
+---
+layout: review.njk
+title: "The Selection (The Selection, #1)"
+author: "Kiera Cass"
+date_added: 2024-12-28
+rating: 6
+type: book
+goodreads_id: "10507293"
+tags:
+  - reviews
+  - post
+---

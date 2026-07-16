@@ -10,16 +10,17 @@ eleventyExcludeFromCollections: true
   {% for tag in tagList %}
     <div class="tag-group tag-group--{{ tag }}" id="tag-{{ tag }}">
       <h2>#{{ tag }}</h2>
-      <ol class="tag-group-list">
+      <ol class="tag-group-list" data-paginated-list data-page-size="25">
         {% for post in collections[tag] | reverse %}
-          {% if post.data.tags and "post" in post.data.tags and post.content %}
+          {% if post.data.tags and "post" in post.data.tags %}
             <li class="tag-group-item">
               <a href="{{ post.url | url }}" class="tag-group-title">{{ post.data.title }}</a>
-              <span class="tag-group-date">{{ post.date | date("MMM d, yyyy") }}</span>
+              <span class="tag-group-date">{{ post | extractDate | date("MMM d, yyyy") }}</span>
             </li>
           {% endif %}
         {% endfor %}
       </ol>
+      <div class="list-pagination" data-list-pagination></div>
     </div>
   {% endfor %}
 </div>

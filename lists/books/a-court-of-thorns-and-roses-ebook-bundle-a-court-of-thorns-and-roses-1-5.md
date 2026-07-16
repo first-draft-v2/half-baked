@@ -1,0 +1,12 @@
+---
+layout: review.njk
+title: "A Court of Thorns and Roses eBook Bundle (A Court of Thorns and Roses, #1-5)"
+author: "Sarah J. Maas"
+date_added: 2024-03-01
+rating: 8
+type: book
+goodreads_id: "61480778"
+tags:
+  - reviews
+  - post
+---

@@ -1,12 +1,21 @@
 ---
 layout: base.njk
+pagination:
+  data: collections.feedPosts
+  size: 10
+  alias: posts
+permalink: "{% if pagination.pageNumber == 0 %}/{% else %}/page/{{ pagination.pageNumber + 1 }}/{% endif %}"
 ---
 <div class="post-stack">
   {% set previousYear = null %}
-  {% set archiveStarted = false %}
-  {% for post in collections.posts | sortByLastDate %}
+  {% set archiveStarted = pagination.pageNumber > 0 %}
+  {% for post in posts %}
     {% if post.content %}
       {% set postYear = post | extractDate | date("yyyy") %}
+      {% if loop.first and pagination.pageNumber > 0 %}
+        <div class="year-separator"><span>{{ postYear }}</span></div>
+        {% set previousYear = postYear %}
+      {% endif %}
       {% if previousYear and postYear != previousYear %}
         {% if not archiveStarted %}
           <div class="archive-notice">
@@ -48,3 +57,4 @@ layout: base.njk
     {% endif %}
   {% endfor %}
 </div>
+{% include "pagination.njk" %}

@@ -9,7 +9,7 @@ tags:
     - reviews
     - post
 ---
-Stories, ranked:
+Stories, feebly ranked:
 
 **Good!**
 1. Mario

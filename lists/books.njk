@@ -10,23 +10,25 @@ tags:
   - lists
 ---
 
-<div class="media-index">
+<div class="media-index" data-review-list data-page-size="30">
   <header class="archive-header">
     <h1>📖 Books</h1>
   </header>
+
+  {% include "review-list-controls.njk" %}
 
   <table class="media-list">
     <thead>
         <tr>
             <th>Title</th>
-            <th>Finished</th>
+            <th>Finished/Added</th>
             <th>Rating</th>
         </tr>
     </thead>
 
     <tbody>
         {% for item in collections.books | sortByLastDate %}
-        <tr>
+        <tr data-title="{{ item.data.title | lower | escape }}" data-date="{{ (item.data.date_finished or item.data.date_started or item.data.date_added or item.date) | date('yyyy-MM-dd') }}" data-rating="{{ item.data.rating or 0 }}">
             <td class="media-list-title">
                 <a href="{{ item.url | url }}">
                     {{ item.data.title }}
@@ -34,10 +36,12 @@ tags:
             </td>
 
             <td>
-                {% if item.data.date_finished %}
-                    <time datetime="{{ item.data.date_finished | date('yyyy-MM-dd') }}">
-                        {{ item.data.date_finished | date("MM/dd/yyyy") }}
+                {% set displayDate = item.data.date_finished or item.data.date_added %}
+                {% if displayDate %}
+                    <time datetime="{{ displayDate | date('yyyy-MM-dd') }}">
+                        {{ displayDate | date("MM/dd/yyyy") }}
                     </time>
+                    {% if not item.data.date_finished %}<span class="media-list-date-kind">added</span>{% endif %}
                 {% endif %}
             </td>
 
@@ -64,4 +68,5 @@ tags:
         {% endfor %}
     </tbody>
   </table>
+  <div class="list-pagination" data-list-pagination></div>
 </div>

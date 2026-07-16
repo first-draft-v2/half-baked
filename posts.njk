@@ -1,7 +1,11 @@
 ---
 layout: base.njk
 title: Posts
-permalink: /posts/
+pagination:
+  data: collections.feedPosts
+  size: 25
+  alias: posts
+permalink: "{% if pagination.pageNumber == 0 %}/posts/{% else %}/posts/page/{{ pagination.pageNumber + 1 }}/{% endif %}"
 ---
 <div class="post-list">
   <header class="archive-header">
@@ -12,7 +16,7 @@ permalink: /posts/
   <ol reversed>
     {% set previousYear = null %}
     {% set archiveStarted = false %}
-    {% for post in collections.posts | sortByLastDate %}
+    {% for post in posts %}
       {% if post.content %}
         {% set postYear = post | extractDate | date("yyyy") %}
         {% if previousYear and postYear != previousYear %}
@@ -45,3 +49,4 @@ permalink: /posts/
     {% endfor %}
   </ol>
 </div>
+{% include "pagination.njk" %}

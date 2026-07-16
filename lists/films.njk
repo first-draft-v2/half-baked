@@ -10,10 +10,12 @@ tags:
     - lists
 ---
 
-<div class="media-index">
+<div class="media-index" data-review-list data-page-size="30">
   <header class="archive-header">
     <h1>🍿 Films</h1>
   </header>
+
+  {% include "review-list-controls.njk" %}
 
   <table class="media-list">
     <thead>
@@ -27,7 +29,7 @@ tags:
 
     <tbody>
         {% for item in collections.films %}
-        <tr>
+        <tr data-title="{{ item.data.title | lower | escape }}" data-date="{{ (item.data.date_finished or item.data.date_started or item.data.date_added or item.date) | date('yyyy-MM-dd') }}" data-rating="{{ item.data.rating or 0 }}">
             <td class="media-list-title">
                 <a href="{{ item.url | url }}">
                     {{ item.data.title }}
@@ -59,4 +61,5 @@ tags:
         {% endfor %}
     </tbody>
   </table>
+  <div class="list-pagination" data-list-pagination></div>
 </div>
