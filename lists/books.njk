@@ -19,7 +19,7 @@ tags:
     <thead>
         <tr>
             <th><button type="button" data-sort-key="title">Title <span class="sort-chevron" aria-hidden="true"></span></button></th>
-            <th aria-sort="descending"><button type="button" data-sort-key="date">Finished/Added <span class="sort-chevron" aria-hidden="true">▾</span></button></th>
+            <th aria-sort="descending"><button type="button" data-sort-key="date">Date<span class="sort-chevron" aria-hidden="true">▾</span></button></th>
             <th><button type="button" data-sort-key="rating">Rating <span class="sort-chevron" aria-hidden="true"></span></button></th>
         </tr>
     </thead>
@@ -40,6 +40,7 @@ tags:
                         {{ displayDate | date("MM/dd/yyyy") }}
                     </time>
                     {% if not item.data.date_finished %}<span class="media-list-date-kind">added</span>{% endif %}
+                    {% if item.data.date_finished %}<span class="media-list-date-kind">Finished</span>{% endif %}
                 {% endif %}
             </td>
 
