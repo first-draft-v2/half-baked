@@ -71,6 +71,19 @@ a:hover {
   color: var(--ink);
 }
 
+.site-brand {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+}
+
+.site-subtitle {
+  font-size: 0.9rem;
+  color: var(--muted, #666);
+  line-height: 1.4;
+}
+
 .site-nav {
   display: flex;
   gap: 22px;

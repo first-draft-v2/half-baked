@@ -10,8 +10,12 @@
 <body>
   <header class="site-header">
     <div class="wrap">
-    {% set _title = 'Halfbakken' if tags and tags.includes('dutch') else 'Half-baked' %}
-      <a class="site-title" href="{{ '/' | url }}">{{ _title }}</a>
+      {% set _title = 'Halfbakken' if tags and tags.includes('dutch') else 'Half-baked' %}
+      <div class="site-brand">
+        <a class="site-title" href="{{ '/' | url }}">{{ _title }}</a>
+        <span class="site-subtitle">A public archive of private thoughts.</span>
+      </div>
+
       <nav class="site-nav">
         <a href="{{ '/' | url }}" class="{% if page.url == '/' %}active{% endif %}">Home</a>
         <a href="{{ '/posts/' | url }}" class="{% if page.url == '/posts/' %}active{% endif %}">Posts</a>
