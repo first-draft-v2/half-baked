@@ -9,10 +9,10 @@
   --ink-faint: oklch(0.5 0.005 240);
 
   /* Main type colours */
-  --accent: oklch(0.58 0.22 350); /* vivid pink */
-  --poem:   oklch(0.56 0.19 265); /* electric blue */
-  --misc:   oklch(0.54 0.16 160); /* emerald green */
-  --review: oklch(0.58 0.17 65);  /* clear orange */
+  --accent: oklch(.656 .241 354.308); /* vivid pink */
+  --poem:   oklch(.685 .169 237.323); /* electric blue */
+  --misc:   oklch(.696 .17 162.48); /* emerald green */
+  --review: oklch(.769 .188 70.08);  /* clear orange */
 
   /* Matching borders */
   --post-border:   oklch(0.80 0.10 350);
@@ -119,9 +119,9 @@ a:hover {
   background: linear-gradient(
     90deg,
     var(--accent) 0 25%,
-    var(--poem) 25% 50%,
+    var(--review) 25% 50%,
     var(--misc) 50% 75%,
-    var(--review) 75% 100%
+    var(--poem) 75% 100%
   );
 }
 
@@ -131,9 +131,9 @@ a:hover {
   background: linear-gradient(
     90deg,
     var(--accent) 0 25%,
-    var(--poem) 25% 50%,
+    var(--review) 25% 50%,
     var(--misc) 50% 75%,
-    var(--review) 75% 100%
+    var(--poem) 75% 100%
   );
   background-clip: text;
   -webkit-background-clip: text;
