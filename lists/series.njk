@@ -15,21 +15,19 @@ tags:
     <h1>📺 TV Series</h1>
   </header>
 
-  {% include "review-list-controls.njk" %}
-
   <table class="media-list">
     <thead>
         <tr>
-            <th>Title</th>
-            <th>Started</th>
-            <th>Finished</th>
-            <th>Rating</th>
+            <th><button type="button" data-sort-key="title">Title <span class="sort-chevron" aria-hidden="true"></span></button></th>
+            <th><button type="button" data-sort-key="started">Started <span class="sort-chevron" aria-hidden="true"></span></button></th>
+            <th aria-sort="descending"><button type="button" data-sort-key="finished">Finished <span class="sort-chevron" aria-hidden="true">▾</span></button></th>
+            <th><button type="button" data-sort-key="rating">Rating <span class="sort-chevron" aria-hidden="true"></span></button></th>
         </tr>
     </thead>
 
     <tbody>
         {% for item in collections.series %}
-        <tr data-title="{{ item.data.title | lower | escape }}" data-date="{{ (item.data.date_finished or item.data.date_started or item.data.date_added or item.date) | date('yyyy-MM-dd') }}" data-rating="{{ item.data.rating or 0 }}">
+        <tr data-title="{{ item.data.title | lower | escape }}" data-started="{% if item.data.date_started %}{{ item.data.date_started | date('yyyy-MM-dd') }}{% endif %}" data-finished="{% if item.data.date_finished %}{{ item.data.date_finished | date('yyyy-MM-dd') }}{% endif %}" data-rating="{{ item.data.rating or 0 }}">
             <td class="media-list-title">
                 <a href="{{ item.url | url }}">
                     {{ item.data.title }}

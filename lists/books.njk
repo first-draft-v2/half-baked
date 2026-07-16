@@ -15,14 +15,12 @@ tags:
     <h1>📖 Books</h1>
   </header>
 
-  {% include "review-list-controls.njk" %}
-
   <table class="media-list">
     <thead>
         <tr>
-            <th>Title</th>
-            <th>Finished/Added</th>
-            <th>Rating</th>
+            <th><button type="button" data-sort-key="title">Title <span class="sort-chevron" aria-hidden="true"></span></button></th>
+            <th aria-sort="descending"><button type="button" data-sort-key="date">Finished/Added <span class="sort-chevron" aria-hidden="true">▾</span></button></th>
+            <th><button type="button" data-sort-key="rating">Rating <span class="sort-chevron" aria-hidden="true"></span></button></th>
         </tr>
     </thead>
 

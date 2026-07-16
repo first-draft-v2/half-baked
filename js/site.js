@@ -31,28 +31,45 @@
 
   document.querySelectorAll("[data-review-list]").forEach((list) => {
     const body = list.querySelector("tbody");
-    const sort = list.querySelector("[data-review-sort]");
+    const sortButtons = Array.from(list.querySelectorAll("[data-sort-key]"));
     const pager = list.querySelector("[data-list-pagination]");
     const pageSize = Number(list.dataset.pageSize) || 30;
     const rows = Array.from(body.rows);
     let page = 0;
+    const initial = sortButtons.find((button) => button.closest("th").hasAttribute("aria-sort"));
+    let sortKey = initial?.dataset.sortKey || "title";
+    let sortDirection = initial?.closest("th").getAttribute("aria-sort") || "ascending";
 
-    const comparators = {
-      "date-desc": (a, b) => b.dataset.date.localeCompare(a.dataset.date),
-      "date-asc": (a, b) => a.dataset.date.localeCompare(b.dataset.date),
-      "title-asc": (a, b) => a.dataset.title.localeCompare(b.dataset.title),
-      "title-desc": (a, b) => b.dataset.title.localeCompare(a.dataset.title),
-      "rating-desc": (a, b) => Number(b.dataset.rating) - Number(a.dataset.rating),
-      "rating-asc": (a, b) => Number(a.dataset.rating) - Number(b.dataset.rating),
+    const compare = (a, b) => {
+      const left = a.dataset[sortKey] || "";
+      const right = b.dataset[sortKey] || "";
+      const result = sortKey === "rating"
+        ? Number(left) - Number(right)
+        : left.localeCompare(right);
+      return sortDirection === "ascending" ? result : -result;
+    };
+
+    const updateHeaders = () => {
+      sortButtons.forEach((button) => {
+        const active = button.dataset.sortKey === sortKey;
+        const heading = button.closest("th");
+        const chevron = button.querySelector(".sort-chevron");
+        heading.removeAttribute("aria-sort");
+        chevron.textContent = active
+          ? (sortDirection === "ascending" ? "▴" : "▾")
+          : "";
+        if (active) heading.setAttribute("aria-sort", sortDirection);
+      });
     };
 
     let renderPager;
     const render = () => {
-      rows.sort(comparators[sort.value]);
+      rows.sort(compare);
       rows.forEach((row, index) => {
         body.append(row);
         row.hidden = index < page * pageSize || index >= (page + 1) * pageSize;
       });
+      updateHeaders();
       renderPager();
     };
 
@@ -69,9 +86,18 @@
       () => Math.ceil(rows.length / pageSize),
     );
 
-    sort.addEventListener("change", () => {
-      page = 0;
-      render();
+    sortButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const nextKey = button.dataset.sortKey;
+        if (nextKey === sortKey) {
+          sortDirection = sortDirection === "ascending" ? "descending" : "ascending";
+        } else {
+          sortKey = nextKey;
+          sortDirection = nextKey === "title" ? "ascending" : "descending";
+        }
+        page = 0;
+        render();
+      });
     });
 
     render();

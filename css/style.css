@@ -212,34 +212,6 @@ a:hover {
   scroll-margin-top: 16px;
 }
 
-.review-list-controls {
-  display: flex;
-  justify-content: flex-end;
-  margin: -10px 0 18px;
-}
-
-.review-list-controls label {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  color: var(--ink-faint);
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.review-list-controls select {
-  padding: 7px 28px 7px 9px;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  background: var(--paper);
-  color: var(--ink);
-  font: 12px var(--font-ui);
-  text-transform: none;
-}
-
 .list-directory ul {
   display: flex;
   flex-direction: column;
@@ -310,6 +282,42 @@ a:hover {
   font-size: 0.85rem;
   font-weight: 600;
   text-align: left;
+}
+
+.media-list th button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+}
+
+.media-list th:not(:first-child) button {
+  justify-content: flex-end;
+}
+
+.media-list th button:hover,
+.media-list th button:focus-visible,
+.media-list th[aria-sort] button {
+  color: var(--accent);
+}
+
+.media-list th button:focus-visible {
+  outline: 2px solid var(--post-border);
+  outline-offset: 3px;
+}
+
+.sort-chevron {
+  display: inline-block;
+  min-width: 1em;
+  color: var(--accent);
+  font-size: 11px;
+  line-height: 1;
+  text-align: center;
 }
 
 .media-list-title {
@@ -1122,10 +1130,6 @@ a:hover {
   .media-list th:last-child,
   .media-list td:last-child {
     padding-right: 18px;
-  }
-
-  .review-list-controls {
-    justify-content: flex-start;
   }
 
   .pagination-nav,
