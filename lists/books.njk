@@ -47,7 +47,7 @@ tags:
 
             <td class="media-list-rating">
                 {% if item.data.rating %}
-                    <span class="rating" title="{{ item.data.rating }}/10">
+                    <span class="rating" data-rating-label="{{ item.data.rating }}/10" aria-label="Rating: {{ item.data.rating }} out of 10" tabindex="0">
                         {% set fullStars = (item.data.rating / 2) | round(0, "floor") %}
                         {% set halfStar = (item.data.rating % 2) >= 1 %}
 

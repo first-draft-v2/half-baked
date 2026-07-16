@@ -15,7 +15,7 @@ layout: base.njk
   <h1 class="media-review-title">{{ title }}</h1>
 
   {% if rating %}
-    <div class="media-review-rating" title="{{ rating }}/10">
+    <div class="media-review-rating" data-rating-label="{{ rating }}/10" aria-label="Rating: {{ rating }} out of 10" tabindex="0">
       {% set fullStars = (rating / 2) | round(0, "floor") %}
       {% set halfStar = (rating % 2) >= 1 %}
 
