@@ -5,7 +5,6 @@ date: 2011-05-19
 tags:
   - post
   - poetry
-  - dutch
 ---
 All alone in unknown land
 The hunter stalked his prey
