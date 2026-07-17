@@ -42,6 +42,8 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy("css");
   eleventyConfig.addPassthroughCopy("images");
+  eleventyConfig.addPassthroughCopy({ "images/favicon.png": "favicon.png" });
+  eleventyConfig.addPassthroughCopy({ "images/apple-touch-icon.png": "apple-touch-icon.png" });
   eleventyConfig.addPassthroughCopy("js");
 
   eleventyConfig.addFilter("date", (dateObj, format) => {
