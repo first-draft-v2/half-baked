@@ -334,6 +334,13 @@ a:hover {
   text-decoration: none;
 }
 
+.media-list-title a.media-list-title--abandoned,
+.media-list-title a.media-list-title--abandoned:hover,
+.media-review-title--abandoned {
+  text-decoration-line: line-through;
+  text-decoration-thickness: 0.08em;
+}
+
 .media-list th:not(:first-child),
 .media-list td:not(:first-child) {
   padding-left: 2rem;
@@ -668,23 +675,21 @@ a:hover {
   font-size: 10px;
 }
 
-.list-pagination button {
+.list-pagination a,
+.list-pagination > span:first-child,
+.list-pagination > span:last-child {
   justify-self: start;
   padding: 0;
-  border: 0;
-  background: transparent;
   color: var(--accent);
-  cursor: pointer;
   font: 500 11px var(--font-mono);
 }
 
-.list-pagination button:last-child {
+.list-pagination > :last-child {
   justify-self: end;
 }
 
-.list-pagination button:disabled {
+.list-pagination > [aria-disabled="true"] {
   color: var(--ink-faint);
-  cursor: default;
   opacity: 0.45;
 }
 

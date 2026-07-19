@@ -28,19 +28,24 @@ tags:
         {% for item in collections.books | sortByLastDate %}
         <tr data-title="{{ item.data.title | lower | escape }}" data-date="{{ (item.data.date_finished or item.data.date_started or item.data.date_added or item.date) | date('yyyy-MM-dd') }}" data-rating="{{ item.data.rating or 0 }}">
             <td class="media-list-title">
-                <a href="{{ item.url | url }}">
+                <a href="{{ item.url | url }}"{% if item.data.tags and "abandoned" in item.data.tags %} class="media-list-title--abandoned"{% endif %}>
                     {{ item.data.title }}
                 </a>
             </td>
 
             <td>
-                {% set displayDate = item.data.date_finished or item.data.date_added %}
+                {% set displayDate = item.data.date_finished or item.data.date_started or item.data.date_added %}
                 {% if displayDate %}
                     <time datetime="{{ displayDate | date('yyyy-MM-dd') }}">
                         {{ displayDate | date("MM/dd/yyyy") }}
                     </time>
-                    {% if not item.data.date_finished %}<span class="media-list-date-kind">added</span>{% endif %}
-                    {% if item.data.date_finished %}<span class="media-list-date-kind">Finished</span>{% endif %}
+                    {% if item.data.date_finished %}
+                        <span class="media-list-date-kind">Finished</span>
+                    {% elif item.data.date_started %}
+                        <span class="media-list-date-kind">Started</span>
+                    {% else %}
+                        <span class="media-list-date-kind">Added</span>
+                    {% endif %}
                 {% endif %}
             </td>
 

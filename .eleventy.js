@@ -56,7 +56,7 @@ module.exports = function (eleventyConfig) {
     const tagSet = new Set();
     collectionApi.getAll().forEach((item) => {
       (item.data.tags || []).forEach((tag) => {
-        if (tag !== "post" && tag !== "lists" && tag !== "abandoned") tagSet.add(tag);
+        if (tag !== "post" && tag !== "lists" && tag !== "reviews" && tag !== "abandoned") tagSet.add(tag);
       });
     });
     return [...tagSet].sort();

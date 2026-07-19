@@ -1,5 +1,22 @@
 (() => {
-  const makePager = (container, getPage, setPage, getTotalPages) => {
+  const pageFromUrl = (parameter, totalPages) => {
+    const value = Number.parseInt(new URL(window.location.href).searchParams.get(parameter), 10);
+    if (!Number.isFinite(value)) return 0;
+    return Math.min(Math.max(value - 1, 0), Math.max(totalPages - 1, 0));
+  };
+
+  const pageHref = (parameter, page, hash = "") => {
+    const url = new URL(window.location.href);
+    if (page === 0) {
+      url.searchParams.delete(parameter);
+    } else {
+      url.searchParams.set(parameter, String(page + 1));
+    }
+    url.hash = hash;
+    return `${url.pathname}${url.search}${url.hash}`;
+  };
+
+  const makePager = (container, getPage, getTotalPages, getPageHref) => {
     const render = () => {
       const page = getPage();
       const totalPages = getTotalPages();
@@ -7,21 +24,26 @@
 
       if (totalPages <= 1) return;
 
-      const previous = document.createElement("button");
-      previous.type = "button";
+      const previous = document.createElement(page === 0 ? "span" : "a");
       previous.textContent = "← Previous";
-      previous.disabled = page === 0;
-      previous.addEventListener("click", () => setPage(page - 1));
+      if (page === 0) {
+        previous.setAttribute("aria-disabled", "true");
+      } else {
+        previous.href = getPageHref(page - 1);
+        previous.rel = "prev";
+      }
 
       const status = document.createElement("span");
       status.textContent = `Page ${page + 1} of ${totalPages}`;
-      status.setAttribute("aria-live", "polite");
 
-      const next = document.createElement("button");
-      next.type = "button";
+      const next = document.createElement(page === totalPages - 1 ? "span" : "a");
       next.textContent = "Next →";
-      next.disabled = page === totalPages - 1;
-      next.addEventListener("click", () => setPage(page + 1));
+      if (page === totalPages - 1) {
+        next.setAttribute("aria-disabled", "true");
+      } else {
+        next.href = getPageHref(page + 1);
+        next.rel = "next";
+      }
 
       container.append(previous, status, next);
     };
@@ -35,7 +57,9 @@
     const pager = list.querySelector("[data-list-pagination]");
     const pageSize = Number(list.dataset.pageSize) || 30;
     const rows = Array.from(body.rows);
-    let page = 0;
+    const pageParameter = list.dataset.pageParameter || "page";
+    const totalPages = Math.ceil(rows.length / pageSize);
+    let page = pageFromUrl(pageParameter, totalPages);
     const initial = sortButtons.find((button) => button.closest("th").hasAttribute("aria-sort"));
     let sortKey = initial?.dataset.sortKey || "title";
     let sortDirection = initial?.closest("th").getAttribute("aria-sort") || "ascending";
@@ -73,17 +97,11 @@
       renderPager();
     };
 
-    const setPage = (nextPage) => {
-      page = nextPage;
-      render();
-      list.scrollIntoView({ behavior: "smooth", block: "start" });
-    };
-
     renderPager = makePager(
       pager,
       () => page,
-      setPage,
-      () => Math.ceil(rows.length / pageSize),
+      () => totalPages,
+      (targetPage) => pageHref(pageParameter, targetPage),
     );
 
     sortButtons.forEach((button) => {
@@ -96,6 +114,7 @@
           sortDirection = nextKey === "title" ? "ascending" : "descending";
         }
         page = 0;
+        window.history.replaceState(null, "", pageHref(pageParameter, page));
         render();
       });
     });
@@ -107,7 +126,10 @@
     const items = Array.from(list.children);
     const pageSize = Number(list.dataset.pageSize) || 25;
     const pager = list.nextElementSibling;
-    let page = 0;
+    const group = list.closest(".tag-group");
+    const pageParameter = `page-${group.id.replace(/^tag-/, "")}`;
+    const totalPages = Math.ceil(items.length / pageSize);
+    let page = pageFromUrl(pageParameter, totalPages);
 
     let renderPager;
     const render = () => {
@@ -117,17 +139,11 @@
       renderPager();
     };
 
-    const setPage = (nextPage) => {
-      page = nextPage;
-      render();
-      list.closest(".tag-group").scrollIntoView({ behavior: "smooth", block: "start" });
-    };
-
     renderPager = makePager(
       pager,
       () => page,
-      setPage,
-      () => Math.ceil(items.length / pageSize),
+      () => totalPages,
+      (targetPage) => pageHref(pageParameter, targetPage, group.id),
     );
 
     render();

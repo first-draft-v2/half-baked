@@ -1,6 +1,6 @@
 ---
 layout: review.njk
-title: "In Between the Sheets (Vintage International)"
+title: "In Between the Sheets"
 author: "Ian McEwan"
 date_added: 2015-05-23
 rating: 6

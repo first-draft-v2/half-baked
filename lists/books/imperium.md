@@ -1,6 +1,6 @@
 ---
 layout: review.njk
-title: "Imperium (Cicero, #1)"
+title: "Imperium"
 author: "Robert   Harris"
 date_added: 2018-01-02
 rating: 8

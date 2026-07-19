@@ -2,13 +2,15 @@
 layout: review.njk
 title: Glory Days
 author: Simon Rich
-date_finished: 2026-06-01
-# rating: 7
+date_finished: 2026-06-13
+rating: 7
 type: book
 tags:
     - reviews
     - post
 ---
+Recommended by a friend. I especially liked the first few stories like Mario, Millenial Fable and The City Speaks. It goes downhill from there, but I still enjoyed them as bedtime stories.
+
 Stories, feebly ranked:
 
 **Good!**

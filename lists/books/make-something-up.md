@@ -1,6 +1,6 @@
 ---
 layout: review.njk
-title: "Make Something Up: Stories You Can't Unread"
+title: "Make Something Up"
 author: "Chuck Palahniuk"
 date_added: 2018-06-22
 rating: 4

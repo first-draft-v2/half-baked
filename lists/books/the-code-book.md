@@ -1,6 +1,6 @@
 ---
 layout: review.njk
-title: "The Code Book: The Science of Secrecy from Ancient Egypt to Quantum Cryptography"
+title: "The Code Book"
 author: "Simon Singh"
 date_added: 2018-08-03
 rating: 6

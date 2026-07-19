@@ -1,6 +1,6 @@
 ---
 layout: review.njk
-title: "Angus, Thongs, and Full-Frontal Snogging (Confessions of Georgia Nicolson (Prebound))"
+title: "Angus, Thongs, and Full-Frontal Snogging"
 author: "Louise Rennison"
 date_added: 2010-06-29
 rating: 6

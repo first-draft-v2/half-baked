@@ -1,6 +1,6 @@
 ---
 layout: review.njk
-title: "Auto Rijbewijs Theorieboek: de Verkeersregels"
+title: "Auto Rijbewijs Theorieboek"
 author: "VekaBest"
 date_added: 2022-01-02
 rating: 4

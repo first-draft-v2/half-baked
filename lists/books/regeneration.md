@@ -1,6 +1,6 @@
 ---
 layout: review.njk
-title: "Regeneration)"
+title: "Regeneration"
 author: "Pat Barker"
 date_added: 2019-02-12
 rating: 6

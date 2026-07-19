@@ -1,6 +1,6 @@
 ---
 layout: review.njk
-title: "Elon Musk: Tesla, SpaceX, and the Quest for a Fantastic Future"
+title: "Elon Musk"
 author: "Ashlee Vance"
 date_finished: 2021-07-01
 date_added: 2022-01-02

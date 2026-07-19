@@ -1,6 +1,6 @@
 ---
 layout: review.njk
-title: "Neverwhere (London Below, #1)"
+title: "Neverwhere"
 author: "Neil Gaiman"
 date_added: 2018-09-15
 rating: 8

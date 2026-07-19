@@ -5,14 +5,18 @@ layout: base.njk
 <article class="media-review post--review">
   <div class="post-card-meta">
     <span class="post-kind">review</span>
-    {% set reviewDate = date_finished or date_watched or date or date_added %}
+    {% set reviewDate = date_finished or date_watched or date or date_started or date_added %}
     {% if reviewDate %}
-      {% if not date_finished and not date_watched and not date %}<span class="review-date-kind">added</span>{% endif %}
+      {% if date_started and not date_finished and not date_watched and not date %}
+        <span class="review-date-kind">started</span>
+      {% elif date_added and not date_finished and not date_watched and not date and not date_started %}
+        <span class="review-date-kind">added</span>
+      {% endif %}
       <time datetime="{{ reviewDate | date('yyyy-MM-dd') }}">{{ reviewDate | date("MMM d, yyyy") }}</time>
     {% endif %}
   </div>
 
-  <h1 class="media-review-title">{{ title }}</h1>
+  <h1 class="media-review-title{% if type == 'book' and tags and 'abandoned' in tags %} media-review-title--abandoned{% endif %}">{{ title }}</h1>
 
   {% if rating %}
     <div class="media-review-rating" data-rating-label="{{ rating }}/10" aria-label="Rating: {{ rating }} out of 10" tabindex="0">
@@ -52,7 +56,7 @@ layout: base.njk
   {% if tags %}
     <div class="media-review-tags">
       {% for tag in tags %}
-        {% if tag != "post" and tag != "abandoned" %}
+        {% if tag != "post" and tag != "reviews" and tag != "abandoned" %}
           <a href="{{ ('/tags/#tag-' + tag) | url }}">#{{ tag }}</a>
         {% endif %}
       {% endfor %}

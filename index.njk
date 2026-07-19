@@ -48,7 +48,7 @@ permalink: "{% if pagination.pageNumber == 0 %}/{% else %}/page/{{ pagination.pa
         {% if post.data.tags %}
           <div class="post-tags">
             {% for tag in post.data.tags %}
-              {% if tag != "post" %}<a href="{{ ('/tags/#tag-' + tag) | url }}">#{{ tag }}</a>{% endif %}
+              {% if tag != "post" and tag != "reviews" %}<a href="{{ ('/tags/#tag-' + tag) | url }}">#{{ tag }}</a>{% endif %}
             {% endfor %}
           </div>
         {% endif %}

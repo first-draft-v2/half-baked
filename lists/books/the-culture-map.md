@@ -1,6 +1,6 @@
 ---
 layout: review.njk
-title: "The Culture Map: Breaking Through the Invisible Boundaries of Global Business"
+title: "The Culture Map"
 author: "Erin Meyer"
 date_added: 2023-07-12
 rating: 8
