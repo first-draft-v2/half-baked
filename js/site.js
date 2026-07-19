@@ -61,8 +61,17 @@
     const totalPages = Math.ceil(rows.length / pageSize);
     let page = pageFromUrl(pageParameter, totalPages);
     const initial = sortButtons.find((button) => button.closest("th").hasAttribute("aria-sort"));
-    let sortKey = initial?.dataset.sortKey || "title";
-    let sortDirection = initial?.closest("th").getAttribute("aria-sort") || "ascending";
+    const defaultSortKey = initial?.dataset.sortKey || "title";
+    const defaultSortDirection = initial?.closest("th").getAttribute("aria-sort") || "ascending";
+    const urlParameters = new URL(window.location.href).searchParams;
+    const requestedSortKey = urlParameters.get("sort");
+    const requestedSortDirection = urlParameters.get("order");
+    let sortKey = sortButtons.some((button) => button.dataset.sortKey === requestedSortKey)
+      ? requestedSortKey
+      : defaultSortKey;
+    let sortDirection = requestedSortDirection === "ascending" || requestedSortDirection === "descending"
+      ? requestedSortDirection
+      : defaultSortDirection;
 
     const compare = (a, b) => {
       const left = a.dataset[sortKey] || "";
@@ -114,7 +123,11 @@
           sortDirection = nextKey === "title" ? "ascending" : "descending";
         }
         page = 0;
-        window.history.replaceState(null, "", pageHref(pageParameter, page));
+        const url = new URL(window.location.href);
+        url.searchParams.delete(pageParameter);
+        url.searchParams.set("sort", sortKey);
+        url.searchParams.set("order", sortDirection);
+        window.history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
         render();
       });
     });
