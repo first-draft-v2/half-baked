@@ -1,6 +1,6 @@
 ---
 layout: review.njk
-title: "Onyx Storm"
+title: "Onyx Storm (The Empyrean, #3)"
 author: "Rebecca Yarros"
 date_added: 2025-02-25
 rating: 6

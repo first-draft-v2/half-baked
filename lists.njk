@@ -12,16 +12,18 @@ permalink: /lists/
 
   <ul>
     {% for item in collections.lists | sort(false, false, "data.listOrder") %}
-      <li>
-        <a href="{{ item.url | url }}">
-          <span class="list-directory-title">
-            <span class="list-directory-emoji" aria-hidden="true">{{ item.data.listEmoji }}</span>
-            <span>{{ item.data.listLabel }}</span>
-            <span class="list-directory-count">({{ collections[item.data.listCollection] | length }})</span>
-          </span>
-          <span class="list-directory-arrow" aria-hidden="true">→</span>
-        </a>
-      </li>
+      {% if not item.data.listHidden %}
+        <li>
+          <a href="{{ item.url | url }}">
+            <span class="list-directory-title">
+              <span class="list-directory-emoji" aria-hidden="true">{{ item.data.listEmoji }}</span>
+              <span>{{ item.data.listLabel }}</span>
+              <span class="list-directory-count">({{ collections[item.data.listCollection] | length }})</span>
+            </span>
+            <span class="list-directory-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+      {% endif %}
     {% endfor %}
   </ul>
 </div>
