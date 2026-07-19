@@ -5,7 +5,9 @@
   "scripts": {
     "start": "eleventy --serve",
     "build": "eleventy",
-    "build-ghpages": "eleventy"
+    "build-ghpages": "eleventy",
+    "books:enrich": "node scripts/enrich-book-isbns.mjs",
+    "books:localize-covers": "node scripts/localize-book-covers.mjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.6"

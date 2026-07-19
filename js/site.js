@@ -52,17 +52,21 @@
   };
 
   document.querySelectorAll("[data-review-list]").forEach((list) => {
-    const body = list.querySelector("tbody");
+    const body = list.querySelector("[data-review-body]") || list.querySelector("tbody");
     const sortButtons = Array.from(list.querySelectorAll("[data-sort-key]"));
+    const viewButtons = Array.from(list.querySelectorAll("[data-view-mode]"));
     const pager = list.querySelector("[data-list-pagination]");
     const pageSize = Number(list.dataset.pageSize) || 30;
-    const rows = Array.from(body.rows);
+    const rows = list.dataset.itemSelector
+      ? Array.from(body.querySelectorAll(list.dataset.itemSelector))
+      : Array.from(body.rows);
     const pageParameter = list.dataset.pageParameter || "page";
     const totalPages = Math.ceil(rows.length / pageSize);
     let page = pageFromUrl(pageParameter, totalPages);
-    const initial = sortButtons.find((button) => button.closest("th").hasAttribute("aria-sort"));
+    const initial = sortButtons.find((button) => button.closest("[data-sort-heading], th")?.hasAttribute("aria-sort"));
+    const initialHeading = initial?.closest("[data-sort-heading], th");
     const defaultSortKey = initial?.dataset.sortKey || "title";
-    const defaultSortDirection = initial?.closest("th").getAttribute("aria-sort") || "ascending";
+    const defaultSortDirection = initialHeading?.getAttribute("aria-sort") || "ascending";
     const urlParameters = new URL(window.location.href).searchParams;
     const requestedSortKey = urlParameters.get("sort");
     const requestedSortDirection = urlParameters.get("order");
@@ -72,6 +76,11 @@
     let sortDirection = requestedSortDirection === "ascending" || requestedSortDirection === "descending"
       ? requestedSortDirection
       : defaultSortDirection;
+    const defaultView = list.dataset.defaultView || "list";
+    const requestedView = urlParameters.get("view");
+    let view = viewButtons.some((button) => button.dataset.viewMode === requestedView)
+      ? requestedView
+      : defaultView;
 
     const compare = (a, b) => {
       const left = a.dataset[sortKey] || "";
@@ -85,13 +94,21 @@
     const updateHeaders = () => {
       sortButtons.forEach((button) => {
         const active = button.dataset.sortKey === sortKey;
-        const heading = button.closest("th");
+        const heading = button.closest("[data-sort-heading], th");
         const chevron = button.querySelector(".sort-chevron");
         heading.removeAttribute("aria-sort");
         chevron.textContent = active
           ? (sortDirection === "ascending" ? "▴" : "▾")
           : "";
         if (active) heading.setAttribute("aria-sort", sortDirection);
+      });
+    };
+
+    const updateView = () => {
+      if (!viewButtons.length) return;
+      body.dataset.view = view;
+      viewButtons.forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.viewMode === view));
       });
     };
 
@@ -103,6 +120,7 @@
         row.hidden = index < page * pageSize || index >= (page + 1) * pageSize;
       });
       updateHeaders();
+      updateView();
       renderPager();
     };
 
@@ -132,7 +150,27 @@
       });
     });
 
+    viewButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        view = button.dataset.viewMode;
+        const url = new URL(window.location.href);
+        if (view === defaultView) {
+          url.searchParams.delete("view");
+        } else {
+          url.searchParams.set("view", view);
+        }
+        window.history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
+        updateView();
+      });
+    });
+
     render();
+  });
+
+  document.querySelectorAll("[data-book-cover-image]").forEach((image) => {
+    const markMissing = () => image.parentElement.classList.add("book-cover--missing");
+    image.addEventListener("error", markMissing);
+    if (image.complete && image.naturalWidth === 0) markMissing();
   });
 
   document.querySelectorAll("[data-paginated-list]").forEach((list) => {

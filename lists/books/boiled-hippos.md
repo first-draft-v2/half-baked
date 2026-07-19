@@ -1,10 +1,13 @@
 ---
 layout: review.njk
 title: And The Hippos Were Boiled In Their Tanks
+cover: "/images/books/boiled-hippos.jpg"
 author: Jack Kerouac, William S. Burroughs
 date_finished: 2012-01-01
 rating: 6.3
 type: book
+isbn: "9780802198891"
+openlibrary_cover_id: "6449399"
 tags:
     - reviews
     - post

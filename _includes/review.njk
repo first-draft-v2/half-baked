@@ -3,37 +3,59 @@ layout: base.njk
 ---
 
 <article class="media-review post--review">
-  <div class="post-card-meta">
-    <span class="post-kind">review</span>
-    {% set reviewDate = date_finished or date_watched or date or date_started or date_added %}
-    {% if reviewDate %}
-      {% if date_started and not date_finished and not date_watched and not date %}
-        <span class="review-date-kind">started</span>
-      {% elif date_added and not date_finished and not date_watched and not date and not date_started %}
-        <span class="review-date-kind">added</span>
-      {% endif %}
-      <time datetime="{{ reviewDate | date('yyyy-MM-dd') }}">{{ reviewDate | date("MMM d, yyyy") }}</time>
-    {% endif %}
-  </div>
-
-  <h1 class="media-review-title{% if type == 'book' and tags and 'abandoned' in tags %} media-review-title--abandoned{% endif %}">{{ title }}</h1>
-
-  {% if rating %}
-    <div class="media-review-rating" data-rating-label="{{ rating }}/10" aria-label="Rating: {{ rating }} out of 10" tabindex="0">
-      {% set fullStars = (rating / 2) | round(0, "floor") %}
-      {% set halfStar = (rating % 2) >= 1 %}
-
-      {% for i in range(0, 5) %}
-        {% if i < fullStars %}
-          <span class="star star-full">★</span>
-        {% elif i == fullStars and halfStar %}
-          <span class="star star-half">★</span>
+  <div class="media-review-intro">
+    {% if type == "book" %}
+      <div class="review-cover" aria-hidden="true">
+        {% if cover %}
+          <img data-book-cover-image src="{{ cover | url }}" alt="" decoding="async">
+        {% elif openlibrary_cover_id %}
+          <img data-book-cover-image src="https://covers.openlibrary.org/b/id/{{ openlibrary_cover_id }}-L.jpg?default=false" alt="" decoding="async">
+        {% elif isbn %}
+          <img data-book-cover-image src="https://covers.openlibrary.org/b/isbn/{{ isbn }}-L.jpg?default=false" alt="" decoding="async">
         {% else %}
-          <span class="star star-empty">☆</span>
+          <span class="book-cover-placeholder">HB</span>
         {% endif %}
-      {% endfor %}
+      </div>
+    {% endif %}
+
+    <div class="media-review-heading{% if type == 'book' and author %} media-review-heading--with-author{% endif %}">
+      <div class="post-card-meta">
+        <span class="post-kind">review</span>
+        {% set reviewDate = date_finished or date_watched or date or date_started or date_added %}
+        {% if reviewDate %}
+          {% if date_started and not date_finished and not date_watched and not date %}
+            <span class="review-date-kind">started</span>
+          {% elif date_added and not date_finished and not date_watched and not date and not date_started %}
+            <span class="review-date-kind">added</span>
+          {% endif %}
+          <time datetime="{{ reviewDate | date('yyyy-MM-dd') }}">{{ reviewDate | date("MMM d, yyyy") }}</time>
+        {% endif %}
+      </div>
+
+      <h1 class="media-review-title{% if type == 'book' and tags and 'abandoned' in tags %} media-review-title--abandoned{% endif %}">{{ title }}</h1>
+
+      {% if type == "book" and author %}
+        <p class="media-review-author">by {{ author }}</p>
+      {% endif %}
+
+      {% if rating %}
+        <div class="media-review-rating" data-rating-label="{{ rating }}/10" aria-label="Rating: {{ rating }} out of 10" tabindex="0">
+          {% set fullStars = (rating / 2) | round(0, "floor") %}
+          {% set halfStar = (rating % 2) >= 1 %}
+
+          {% for i in range(0, 5) %}
+            {% if i < fullStars %}
+              <span class="star star-full">★</span>
+            {% elif i == fullStars and halfStar %}
+              <span class="star star-half">★</span>
+            {% else %}
+              <span class="star star-empty">☆</span>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
     </div>
-  {% endif %}
+  </div>
 
   {% if reads and reads.length > 1 %}
     <div class="media-review-history">

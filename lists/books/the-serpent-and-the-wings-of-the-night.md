@@ -1,8 +1,11 @@
 ---
 layout: review.njk
 title: "The Serpent And The Wings Of The Night"
+cover: "/images/books/the-serpent-and-the-wings-of-the-night.jpg"
 author: "Carissa Broadbent"
 date_finished: 2025-03-23
+isbn: "9781250343178"
+openlibrary_cover_id: "14552075"
 rating: 6
 type: book
 tags:

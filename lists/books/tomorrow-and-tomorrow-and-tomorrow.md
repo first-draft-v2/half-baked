@@ -1,10 +1,13 @@
 ---
 layout: review.njk
 title: Tomorrow and Tomorrow and Tomorrow
+cover: "/images/books/tomorrow-and-tomorrow-and-tomorrow.jpg"
 author: Gabrielle Zevin
 date_finished: 2026-06-19
 rating: 7
 type: book
+isbn: "9780593607831"
+openlibrary_cover_id: "12859975"
 tags:
     - reviews
     - post

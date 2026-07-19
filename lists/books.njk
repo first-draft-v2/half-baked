@@ -10,67 +10,89 @@ tags:
   - lists
 ---
 
-<div class="media-index" data-review-list data-page-size="30">
+<div class="media-index book-index" data-review-list data-page-size="24" data-item-selector=".book-card" data-default-view="grid">
   <header class="archive-header">
     <h1>📖 Books</h1>
   </header>
 
-  <table class="media-list">
-    <thead>
-        <tr>
-            <th><button type="button" data-sort-key="title">Title <span class="sort-chevron" aria-hidden="true"></span></button></th>
-            <th aria-sort="descending"><button type="button" data-sort-key="date">Date<span class="sort-chevron" aria-hidden="true">▾</span></button></th>
-            <th><button type="button" data-sort-key="rating">Rating <span class="sort-chevron" aria-hidden="true"></span></button></th>
-        </tr>
-    </thead>
+  <div class="book-toolbar">
+    <div class="book-view-toggle" aria-label="Book view">
+      <button type="button" data-view-mode="grid" aria-pressed="true">Grid</button>
+      <button type="button" data-view-mode="list" aria-pressed="false">List</button>
+    </div>
+    <div class="book-sort" aria-label="Sort books">
+      <span>Sort:</span>
+      <span data-sort-heading><button type="button" data-sort-key="title">Title <span class="sort-chevron" aria-hidden="true"></span></button></span>
+      <span data-sort-heading aria-sort="descending"><button type="button" data-sort-key="date">Date <span class="sort-chevron" aria-hidden="true">▾</span></button></span>
+      <span data-sort-heading><button type="button" data-sort-key="rating">Rating <span class="sort-chevron" aria-hidden="true"></span></button></span>
+    </div>
+  </div>
 
-    <tbody>
-        {% for item in collections.books | sortByLastDate %}
-        <tr data-title="{{ item.data.title | lower | escape }}" data-date="{{ (item.data.date_finished or item.data.date_started or item.data.date_added or item.date) | date('yyyy-MM-dd') }}" data-rating="{{ item.data.rating or 0 }}">
-            <td class="media-list-title">
-                <a href="{{ item.url | url }}"{% if item.data.tags and "abandoned" in item.data.tags %} class="media-list-title--abandoned"{% endif %}>
-                    {{ item.data.title }}
-                </a>
-            </td>
+  <div class="book-collection" data-review-body data-view="grid">
+    {% for item in collections.books | sortByLastDate %}
+      {% set displayDate = item.data.date_finished or item.data.date_started or item.data.date_added %}
+      {% if not item.data.rating %}
+        {% set coverOpacity = 0.5 %}
+      {% elif item.data.rating >= 7 %}
+        {% set coverOpacity = 1 %}
+      {% elif item.data.rating >= 6 %}
+        {% set coverOpacity = 0.65 %}
+      {% elif item.data.rating > 4 %}
+        {% set coverOpacity = 0.4 %}
+      {% else %}
+        {% set coverOpacity = 0.18 %}
+      {% endif %}
+      <article class="book-card" data-title="{{ item.data.title | lower | escape }}" data-date="{{ (displayDate or item.date) | date('yyyy-MM-dd') }}" data-rating="{{ item.data.rating or 0 }}" style="--book-overlay: {{ item.data.title | bookOverlayColor }}">
+        <a class="book-cover" href="{{ item.url | url }}" style="--cover-opacity: {{ coverOpacity }}" aria-label="{{ item.data.title | escape }}">
+          {% if item.data.cover %}
+            <img data-book-cover-image src="{{ item.data.cover | url }}" alt="" loading="lazy" decoding="async">
+          {% elif item.data.openlibrary_cover_id %}
+            <img data-book-cover-image src="https://covers.openlibrary.org/b/id/{{ item.data.openlibrary_cover_id }}-M.jpg?default=false" alt="" loading="lazy" decoding="async">
+          {% elif item.data.isbn %}
+            <img data-book-cover-image src="https://covers.openlibrary.org/b/isbn/{{ item.data.isbn }}-M.jpg?default=false" alt="" loading="lazy" decoding="async">
+          {% else %}
+            <span class="book-cover-placeholder" aria-hidden="true">HB</span>
+          {% endif %}
+        </a>
 
-            <td>
-                {% set displayDate = item.data.date_finished or item.data.date_started or item.data.date_added %}
-                {% if displayDate %}
-                    <time datetime="{{ displayDate | date('yyyy-MM-dd') }}">
-                        {{ displayDate | date("MM/dd/yyyy") }}
-                    </time>
-                    {% if item.data.date_finished %}
-                        <span class="media-list-date-kind">Finished</span>
-                    {% elif item.data.date_started %}
-                        <span class="media-list-date-kind">Started</span>
-                    {% else %}
-                        <span class="media-list-date-kind">Added</span>
-                    {% endif %}
-                {% endif %}
-            </td>
+        <div class="book-card-content">
+          <h2>
+            <a href="{{ item.url | url }}"{% if item.data.tags and "abandoned" in item.data.tags %} class="media-list-title--abandoned"{% endif %}>{{ item.data.title }}</a>
+          </h2>
 
-            <td class="media-list-rating">
-                {% if item.data.rating %}
-                    <span class="rating" data-rating-label="{{ item.data.rating }}/10" aria-label="Rating: {{ item.data.rating }} out of 10" tabindex="0">
-                        {% set fullStars = (item.data.rating / 2) | round(0, "floor") %}
-                        {% set halfStar = (item.data.rating % 2) >= 1 %}
+          <div class="book-card-meta">
+            {% if displayDate %}
+              {% if item.data.date_finished %}
+                <span class="book-card-date-label">Finished</span>
+              {% elif item.data.date_started %}
+                <span class="book-card-date-label">Started</span>
+              {% else %}
+                <span class="book-card-date-label">Added</span>
+              {% endif %}
+              <time datetime="{{ displayDate | date('yyyy-MM-dd') }}">{{ displayDate | date("MMM d, yyyy") }}</time>
+            {% endif %}
+          </div>
 
-                        {% for i in range(0, 5) %}
-                            {% if i < fullStars %}
-                                <span class="star star-full">★</span>
-                            {% elif i == fullStars and halfStar %}
-                                <span class="star star-half">★</span>
-                            {% else %}
-                                <span class="star star-empty">☆</span>
-                            {% endif %}
-                        {% endfor %}
-                    </span>
-                {% endif %}
-            </td>
-            
-        </tr>
-        {% endfor %}
-    </tbody>
-  </table>
+          {% if item.data.rating %}
+            <div class="book-card-rating">
+              <span class="rating" data-rating-label="{{ item.data.rating }}/10" aria-label="Rating: {{ item.data.rating }} out of 10" tabindex="0">
+                {% set fullStars = (item.data.rating / 2) | round(0, "floor") %}
+                {% set halfStar = (item.data.rating % 2) >= 1 %}
+                {% for i in range(0, 5) %}
+                  {% if i < fullStars %}
+                    <span class="star star-full">★</span>
+                  {% elif i == fullStars and halfStar %}
+                    <span class="star star-half">★</span>
+                  {% else %}
+                    <span class="star star-empty">☆</span>
+                  {% endif %}
+                {% endfor %}
+              </span>
+            </div>
+          {% endif %}
+        </div>
+      </article>
+    {% endfor %}
+  </div>
   <div class="list-pagination" data-list-pagination></div>
 </div>

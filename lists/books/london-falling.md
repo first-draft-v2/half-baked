@@ -1,7 +1,9 @@
 ---
 layout: review.njk
 title: London Falling
+author: Patrick Radden Keefe
 date_started: 2026-06-20
+cover: /images/books/london-falling.jpg
 rating:
 type: book
 tags:

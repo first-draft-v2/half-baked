@@ -50,11 +50,27 @@ module.exports = function (eleventyConfig) {
     return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat(format);
   });
 
+  eleventyConfig.addFilter("csv", (value) => {
+    const text = value == null ? "" : String(value);
+    return `"${text.replaceAll('"', '""')}"`;
+  });
+
+  eleventyConfig.addFilter("bookOverlayColor", (title) => {
+    const colors = ["var(--accent)", "var(--poem)", "var(--misc)", "var(--review)"];
+    const hash = [...String(title || "")].reduce(
+      (total, character) => ((total * 31) + character.codePointAt(0)) >>> 0,
+      0
+    );
+    return colors[hash % colors.length];
+  });
+
   eleventyConfig.addGlobalData("currentYear", () => new Date().getFullYear());
 
   eleventyConfig.addCollection("tagList", function (collectionApi) {
     const tagSet = new Set();
     collectionApi.getAll().forEach((item) => {
+      if (item.data.draft || !item.data?.tags?.includes("post")) return;
+
       (item.data.tags || []).forEach((tag) => {
         if (tag !== "post" && tag !== "lists" && tag !== "reviews" && tag !== "abandoned") tagSet.add(tag);
       });

@@ -5,6 +5,8 @@ author: William S. Burroughs
 date_finished: 2011-12-17
 rating: 7.2
 type: book
+cover: "/images/books/junky.webp"
+isbn: "9780141189826"
 tags:
     - reviews
     - post

@@ -1,0 +1,9 @@
+---
+permalink: /lists/books/data.csv
+eleventyExcludeFromCollections: true
+---
+title,author,rating,date
+{%- for item in collections.books | sortByLastDate %}
+{%- set bookDate = item.data.date_finished or item.data.date_started or item.data.date_added %}
+{{ item.data.title | csv | safe }},{{ item.data.author | csv | safe }},{{ item.data.rating | csv | safe }},{% if bookDate %}{{ bookDate | date('yyyy-MM-dd') | csv | safe }}{% else %}{{ "" | csv | safe }}{% endif %}
+{%- endfor %}

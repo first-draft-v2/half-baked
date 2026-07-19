@@ -1,10 +1,13 @@
 ---
 layout: review.njk
 title: Glory Days
+cover: "/images/books/glory-days.jpg"
 author: Simon Rich
 date_finished: 2026-06-13
 rating: 7
 type: book
+isbn: "9780316569002"
+openlibrary_cover_id: "15089174"
 tags:
     - reviews
     - post

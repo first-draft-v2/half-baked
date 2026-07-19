@@ -1,10 +1,13 @@
 ---
 layout: review.njk
 title: The Fault In Our Stars
+cover: "/images/books/the-fault-in-our-stars.jpg"
 author: John Green
 date_finished: 2012-01-29
 rating: 6.3
 type: book
+isbn: "9780141355078"
+openlibrary_cover_id: "7418786"
 tags:
     - reviews
     - post
