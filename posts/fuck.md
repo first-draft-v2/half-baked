@@ -19,7 +19,7 @@ And so I dropped the fucking thing in fright
 
 I do not like them in my food
 I do not like them in my drawers
-I do not like them, sad I am
+I do not like them, sad-I-am
 and now I’m in a fucking mood
 
 So now my fucking skin is itching
