@@ -4,7 +4,7 @@ title: Fuck
 date: 2026-07-20
 tags:
   - post
-  - poem
+  - poetry
 ---
 There’s fucking flies in my fucking oats 
 The fucking flies are fucking gross
