@@ -199,4 +199,37 @@
 
     render();
   });
+
+  document.querySelectorAll("[data-recipe]").forEach((recipe) => {
+    const input = recipe.querySelector("[data-recipe-scale-input]");
+    const buttons = Array.from(recipe.querySelectorAll("[data-recipe-scale]"));
+    const quantities = Array.from(recipe.querySelectorAll("[data-amount]"));
+    const recipeYield = recipe.querySelector("[data-recipe-yield]");
+    const numberFormat = new Intl.NumberFormat(undefined, { maximumFractionDigits: 2 });
+    const fractions = new Map([[0.25, "¼"], [0.5, "½"], [0.75, "¾"]]);
+
+    const formatAmount = (value) => {
+      const rounded = Math.round(value * 100) / 100;
+      const whole = Math.floor(rounded);
+      const fraction = Math.round((rounded - whole) * 100) / 100;
+      if (fractions.has(fraction)) return `${whole || ""}${fractions.get(fraction)}`;
+      return numberFormat.format(rounded);
+    };
+
+    const scaleRecipe = (multiplier) => {
+      if (!Number.isFinite(multiplier) || multiplier <= 0) return;
+      quantities.forEach((quantity) => {
+        const amount = Number(quantity.dataset.amount) * multiplier;
+        quantity.textContent = `${formatAmount(amount)}${quantity.dataset.unit ? ` ${quantity.dataset.unit}` : ""}`;
+      });
+      if (recipeYield) recipeYield.textContent = formatAmount(Number(recipeYield.dataset.recipeYield) * multiplier);
+      buttons.forEach((button) => button.setAttribute("aria-pressed", String(Number(button.dataset.recipeScale) === multiplier)));
+    };
+
+    buttons.forEach((button) => button.addEventListener("click", () => {
+      input.value = button.dataset.recipeScale;
+      scaleRecipe(Number(button.dataset.recipeScale));
+    }));
+    input.addEventListener("input", () => scaleRecipe(Number(input.value)));
+  });
 })();

@@ -7,7 +7,7 @@ permalink: /lists/
 <div class="list-directory">
   <header class="archive-header">
     <h1>Lists</h1>
-    <p>Reviews, ratings and rankings.</p>
+    <p>Reviews, ratings, rankings and collections.</p>
   </header>
 
   <ul>
@@ -18,7 +18,7 @@ permalink: /lists/
             <span class="list-directory-title">
               <span class="list-directory-emoji" aria-hidden="true">{{ item.data.listEmoji }}</span>
               <span>{{ item.data.listLabel }}</span>
-              <span class="list-directory-count">({{ collections[item.data.listCollection] | length }})</span>
+              <span class="list-directory-count">({% if item.data.listCollection == 'recipes' %}2{% else %}{{ collections[item.data.listCollection] | length }}{% endif %})</span>
             </span>
             <span class="list-directory-arrow" aria-hidden="true">→</span>
           </a>

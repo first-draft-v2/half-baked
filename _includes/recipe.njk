@@ -1,0 +1,55 @@
+---
+layout: base.njk
+---
+
+<article class="recipe-page" data-recipe>
+  <header class="recipe-header">
+    <div>
+      <h1>{{ title }}</h1>
+      <p class="recipe-credit">Recipe by {{ recipeAuthor }}, from <a href="{{ sourceUrl }}" rel="noopener noreferrer">{{ sourceName }}</a>.</p>
+    </div>
+    <dl class="recipe-facts">
+      <div><dt>Makes</dt><dd>About <span data-recipe-yield="{{ recipeYield }}">{{ recipeYield }}</span></dd></div>
+    </dl>
+  </header>
+
+  <div class="recipe-body">
+    <section class="recipe-ingredients">
+      <h2>Ingredients</h2>
+      {% for group in ingredientGroups %}
+        {% if group.title %}<h3>{{ group.title }}</h3>{% endif %}
+        <ul>
+          {% for ingredient in group.items %}
+            <li>
+              <span>{{ ingredient.name }}</span>
+              {% if ingredient.amount %}
+                <strong data-amount="{{ ingredient.amount }}"{% if ingredient.unit %} data-unit="{{ ingredient.unit }}"{% endif %}>{{ ingredient.display or ingredient.amount }}{% if ingredient.unit %} {{ ingredient.unit }}{% endif %}</strong>
+              {% else %}
+                <strong>{{ ingredient.display }}</strong>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endfor %}
+    </section>
+
+    <section class="recipe-method">
+      <h2>Method</h2>
+      <ol>
+        {% for step in method %}<li><span>{{ step }}</span></li>{% endfor %}
+      </ol>
+      {% if note %}<aside class="recipe-note"><strong>{{ noteLabel }}</strong> {{ note }}</aside>{% endif %}
+    </section>
+  </div>
+
+  <div class="recipe-scaler" aria-label="Scale recipe">
+    <span>Scale</span>
+    <div class="recipe-scale-presets">
+      <button type="button" data-recipe-scale="0.5">½×</button>
+      <button type="button" data-recipe-scale="1" aria-pressed="true">1×</button>
+      <button type="button" data-recipe-scale="2">2×</button>
+    </div>
+    <label><span class="visually-hidden">Custom recipe multiplier</span><input type="number" min="0.1" step="0.1" value="1" inputmode="decimal" data-recipe-scale-input><span>×</span></label>
+  </div>
+  <a class="recipe-back" href="{{ '/lists/recipes/' | url }}">← All recipes</a>
+</article>
