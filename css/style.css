@@ -24,6 +24,7 @@
   --font-serif: 'Newsreader', serif;
   --font-ui: 'Inter', sans-serif;
   --font-mono: 'IBM Plex Mono', monospace;
+  --font-sans: 'Inter', sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -292,7 +293,7 @@ a:hover {
 .recipe-body h2 { margin: 0 0 18px; font: 600 13px/1.2 var(--font-ui); letter-spacing: .04em; text-transform: uppercase; }
 .recipe-body h3 { margin: 24px 0 10px; color: var(--ink-soft); font: 500 10px/1.2 var(--font-mono); letter-spacing: .05em; text-transform: uppercase; }
 .recipe-ingredients ul { margin: 0; padding: 0; list-style: none; }
-.recipe-ingredients li { display: flex; justify-content: space-between; gap: 16px; padding: 7px 0; border-bottom: 1px solid var(--border); font: 15px/1.35 var(--font-serif); }
+.recipe-ingredients li { display: flex; justify-content: space-between; gap: 16px; padding: 7px 0; border-bottom: 1px solid var(--border); font: 15px/1.35 var(--font-sans); }
 .recipe-ingredients strong { flex: 0 0 auto; font: 500 10px/1.6 var(--font-mono); white-space: nowrap; }
 .recipe-method ol { margin: 0; padding: 0; counter-reset: method; list-style: none; }
 .recipe-method li { display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 10px; margin-bottom: 14px; font: 17px/1.5 var(--font-serif); counter-increment: method; }
